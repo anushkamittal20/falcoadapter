@@ -3,924 +3,871 @@ items:
 - apiVersion: wgpolicyk8s.io/v1alpha2
   kind: PolicyReport
   metadata:
-    creationTimestamp: "2021-06-29T13:37:35Z"
+    creationTimestamp: "2021-07-01T07:27:21Z"
     generation: 1
-    name: cis-dummy-policy-report
+    name: dummy-preport1
     namespace: default
-    resourceVersion: "1723"
-    uid: 9048c341-8303-4770-be35-0789bdbc5fdc
-  summary:
-    error: 0
-    fail: 0
-    pass: 0
-    skip: 0
-    warn: 0
-- apiVersion: wgpolicyk8s.io/v1alpha2
-  kind: PolicyReport
-  metadata:
-    creationTimestamp: "2021-06-29T14:19:55Z"
-    generation: 1
-    name: dummy-policy-report
-    namespace: default
-    resourceVersion: "3866"
-    uid: d36a63c6-34da-48ed-b811-66dad479b582
-  summary:
-    error: 0
-    fail: 1
-    pass: 0
-    skip: 0
-    warn: 0
-- apiVersion: wgpolicyk8s.io/v1alpha2
-  kind: PolicyReport
-  metadata:
-    creationTimestamp: "2021-06-29T14:27:32Z"
-    generation: 1
-    name: dummy-policy-report1
-    namespace: default
-    resourceVersion: "4641"
-    uid: f27d1467-046b-436c-8b93-7058ab66e510
-  summary:
-    error: 0
-    fail: 14
-    pass: 0
-    skip: 0
-    warn: 0
-- apiVersion: wgpolicyk8s.io/v1alpha2
-  kind: PolicyReport
-  metadata:
-    creationTimestamp: "2021-06-29T14:35:01Z"
-    generation: 1
-    name: dummy-policy-report2
-    namespace: default
-    resourceVersion: "5408"
-    uid: dc6ae228-aa49-4c20-8db1-493784c11a42
-  summary:
-    error: 0
-    fail: 14
-    pass: 0
-    skip: 0
-    warn: 0
-- apiVersion: wgpolicyk8s.io/v1alpha2
-  kind: PolicyReport
-  metadata:
-    creationTimestamp: "2021-06-29T14:53:43Z"
-    generation: 1
-    name: dummy-policy-report3
-    namespace: default
-    resourceVersion: "7314"
-    uid: 4e8c6172-7f5e-45a0-a461-b571d5f549ff
-  summary:
-    error: 0
-    fail: 30
-    pass: 0
-    skip: 0
-    warn: 0
-- apiVersion: wgpolicyk8s.io/v1alpha2
-  kind: PolicyReport
-  metadata:
-    creationTimestamp: "2021-06-29T14:54:33Z"
-    generation: 1
-    name: dummy-policy-report4
-    namespace: default
-    resourceVersion: "7402"
-    uid: fe301133-80c2-4d63-b30e-2960a8c292b1
-  summary:
-    error: 0
-    fail: 30
-    pass: 0
-    skip: 0
-    warn: 0
-- apiVersion: wgpolicyk8s.io/v1alpha2
-  kind: PolicyReport
-  metadata:
-    creationTimestamp: "2021-06-29T14:57:28Z"
-    generation: 1
-    name: dummy-policy-report5
-    namespace: default
-    resourceVersion: "7699"
-    uid: c3693b6d-24ed-49d6-a3d4-9c2ecf23e002
-  summary:
-    error: 0
-    fail: 30
-    pass: 0
-    skip: 0
-    warn: 0
-- apiVersion: wgpolicyk8s.io/v1alpha2
-  kind: PolicyReport
-  metadata:
-    creationTimestamp: "2021-06-29T17:07:47Z"
-    generation: 1
-    name: dummy-policy-report7
-    namespace: default
-    resourceVersion: "10263"
-    uid: 5b858a8c-1a33-41d2-8771-9345f47b2959
-  summary:
-    error: 0
-    fail: 71
-    pass: 0
-    skip: 0
-    warn: 0
-- apiVersion: wgpolicyk8s.io/v1alpha2
-  kind: PolicyReport
-  metadata:
-    creationTimestamp: "2021-06-29T17:14:18Z"
-    generation: 1
-    name: dummy-policy-report8
-    namespace: default
-    resourceVersion: "10929"
-    uid: 23f6f8cd-4382-47e4-a943-048315c41658
+    resourceVersion: "7558"
+    uid: 6e2e0db4-c168-40f2-992a-d63547b631d9
   results:
-  - message: '14:19:02.860932984: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-auth parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '14:19:02.860840372: Warning Sensitive file opened for reading by non-trusted
+  - message: '05:54:40.483395053: Warning Sensitive file opened for reading by non-trusted
       program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
       file=/etc/pam.d/gdm-password parent=gdm-session-wor gparent=<NA> ggparent=<NA>
       gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
       k8s.ns=<NA> k8s.pod=<NA> container=host'
     policy: Read sensitive file untrusted
+    properties:
+      container.id: host
+      container.image.repository: <nil>
+      evt.time: "1.625118880483395e+18"
+      fd.name: /etc/pam.d/gdm-password
+      k8s.ns.name: <nil>
+      k8s.pod.name: <nil>
+      proc.aname[2]: <nil>
+      proc.aname[3]: <nil>
+      proc.aname[4]: <nil>
+      proc.cmdline: gdm-session-wor
+      proc.name: gdm-session-wor
+      proc.pname: gdm-session-wor
+      user.loginuid: "1000"
+      user.name: root
     result: fail
+    severity: medium
     source: ""
     timestamp:
       nanos: 0
       seconds: 0
-  - message: '14:19:02.861197742: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-account parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '14:19:02.861344703: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-session parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '14:19:02.861474954: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-password parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '14:19:02.861486451: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/other parent=gdm-session-wor gparent=<NA> ggparent=<NA> gggparent=<NA>
-      container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA>
-      k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '14:19:02.861489892: Warning Sensitive file opened for reading by non-trusted
+  - message: '05:54:40.483599492: Warning Sensitive file opened for reading by non-trusted
       program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
       file=/etc/pam.d/common-auth parent=gdm-session-wor gparent=<NA> ggparent=<NA>
       gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
       k8s.ns=<NA> k8s.pod=<NA> container=host'
     policy: Read sensitive file untrusted
+    properties:
+      container.id: host
+      container.image.repository: <nil>
+      evt.time: "1.6251188804835996e+18"
+      fd.name: /etc/pam.d/common-auth
+      k8s.ns.name: <nil>
+      k8s.pod.name: <nil>
+      proc.aname[2]: <nil>
+      proc.aname[3]: <nil>
+      proc.aname[4]: <nil>
+      proc.cmdline: gdm-session-wor
+      proc.name: gdm-session-wor
+      proc.pname: gdm-session-wor
+      user.loginuid: "1000"
+      user.name: root
     result: fail
+    severity: medium
     source: ""
     timestamp:
       nanos: 0
       seconds: 0
-  - message: '14:19:02.861499274: Warning Sensitive file opened for reading by non-trusted
+  - message: '05:54:40.483848554: Warning Sensitive file opened for reading by non-trusted
       program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
       file=/etc/pam.d/common-account parent=gdm-session-wor gparent=<NA> ggparent=<NA>
       gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
       k8s.ns=<NA> k8s.pod=<NA> container=host'
     policy: Read sensitive file untrusted
+    properties:
+      container.id: host
+      container.image.repository: <nil>
+      evt.time: "1.6251188804838484e+18"
+      fd.name: /etc/pam.d/common-account
+      k8s.ns.name: <nil>
+      k8s.pod.name: <nil>
+      proc.aname[2]: <nil>
+      proc.aname[3]: <nil>
+      proc.aname[4]: <nil>
+      proc.cmdline: gdm-session-wor
+      proc.name: gdm-session-wor
+      proc.pname: gdm-session-wor
+      user.loginuid: "1000"
+      user.name: root
     result: fail
+    severity: medium
     source: ""
     timestamp:
       nanos: 0
       seconds: 0
-  - message: '14:19:02.861507033: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-password parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '14:19:02.861515108: Warning Sensitive file opened for reading by non-trusted
+  - message: '05:54:40.483989909: Warning Sensitive file opened for reading by non-trusted
       program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
       file=/etc/pam.d/common-session parent=gdm-session-wor gparent=<NA> ggparent=<NA>
       gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
       k8s.ns=<NA> k8s.pod=<NA> container=host'
     policy: Read sensitive file untrusted
+    properties:
+      container.id: host
+      container.image.repository: <nil>
+      evt.time: "1.62511888048399e+18"
+      fd.name: /etc/pam.d/common-session
+      k8s.ns.name: <nil>
+      k8s.pod.name: <nil>
+      proc.aname[2]: <nil>
+      proc.aname[3]: <nil>
+      proc.aname[4]: <nil>
+      proc.cmdline: gdm-session-wor
+      proc.name: gdm-session-wor
+      proc.pname: gdm-session-wor
+      user.loginuid: "1000"
+      user.name: root
     result: fail
+    severity: medium
     source: ""
     timestamp:
       nanos: 0
       seconds: 0
-  - message: '14:19:02.861895645: Warning Sensitive file opened for reading by non-trusted
+  - message: '05:54:40.484114006: Warning Sensitive file opened for reading by non-trusted
+      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
+      file=/etc/pam.d/common-password parent=gdm-session-wor gparent=<NA> ggparent=<NA>
+      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
+      k8s.ns=<NA> k8s.pod=<NA> container=host'
+    policy: Read sensitive file untrusted
+    properties:
+      container.id: host
+      container.image.repository: <nil>
+      evt.time: "1.625118880484114e+18"
+      fd.name: /etc/pam.d/common-password
+      k8s.ns.name: <nil>
+      k8s.pod.name: <nil>
+      proc.aname[2]: <nil>
+      proc.aname[3]: <nil>
+      proc.aname[4]: <nil>
+      proc.cmdline: gdm-session-wor
+      proc.name: gdm-session-wor
+      proc.pname: gdm-session-wor
+      user.loginuid: "1000"
+      user.name: root
+    result: fail
+    severity: medium
+    source: ""
+    timestamp:
+      nanos: 0
+      seconds: 0
+  - message: '05:54:40.484125130: Warning Sensitive file opened for reading by non-trusted
+      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
+      file=/etc/pam.d/other parent=gdm-session-wor gparent=<NA> ggparent=<NA> gggparent=<NA>
+      container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA>
+      k8s.pod=<NA> container=host'
+    policy: Read sensitive file untrusted
+    properties:
+      container.id: host
+      container.image.repository: <nil>
+      evt.time: "1.6251188804841252e+18"
+      fd.name: /etc/pam.d/other
+      k8s.ns.name: <nil>
+      k8s.pod.name: <nil>
+      proc.aname[2]: <nil>
+      proc.aname[3]: <nil>
+      proc.aname[4]: <nil>
+      proc.cmdline: gdm-session-wor
+      proc.name: gdm-session-wor
+      proc.pname: gdm-session-wor
+      user.loginuid: "1000"
+      user.name: root
+    result: fail
+    severity: medium
+    source: ""
+    timestamp:
+      nanos: 0
+      seconds: 0
+  - message: '05:54:40.484128724: Warning Sensitive file opened for reading by non-trusted
+      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
+      file=/etc/pam.d/common-auth parent=gdm-session-wor gparent=<NA> ggparent=<NA>
+      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
+      k8s.ns=<NA> k8s.pod=<NA> container=host'
+    policy: Read sensitive file untrusted
+    properties:
+      container.id: host
+      container.image.repository: <nil>
+      evt.time: "1.6251188804841288e+18"
+      fd.name: /etc/pam.d/common-auth
+      k8s.ns.name: <nil>
+      k8s.pod.name: <nil>
+      proc.aname[2]: <nil>
+      proc.aname[3]: <nil>
+      proc.aname[4]: <nil>
+      proc.cmdline: gdm-session-wor
+      proc.name: gdm-session-wor
+      proc.pname: gdm-session-wor
+      user.loginuid: "1000"
+      user.name: root
+    result: fail
+    severity: medium
+    source: ""
+    timestamp:
+      nanos: 0
+      seconds: 0
+  - message: '05:54:40.484137809: Warning Sensitive file opened for reading by non-trusted
+      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
+      file=/etc/pam.d/common-account parent=gdm-session-wor gparent=<NA> ggparent=<NA>
+      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
+      k8s.ns=<NA> k8s.pod=<NA> container=host'
+    policy: Read sensitive file untrusted
+    properties:
+      container.id: host
+      container.image.repository: <nil>
+      evt.time: "1.6251188804841377e+18"
+      fd.name: /etc/pam.d/common-account
+      k8s.ns.name: <nil>
+      k8s.pod.name: <nil>
+      proc.aname[2]: <nil>
+      proc.aname[3]: <nil>
+      proc.aname[4]: <nil>
+      proc.cmdline: gdm-session-wor
+      proc.name: gdm-session-wor
+      proc.pname: gdm-session-wor
+      user.loginuid: "1000"
+      user.name: root
+    result: fail
+    severity: medium
+    source: ""
+    timestamp:
+      nanos: 0
+      seconds: 0
+  - message: '05:54:40.484145170: Warning Sensitive file opened for reading by non-trusted
+      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
+      file=/etc/pam.d/common-password parent=gdm-session-wor gparent=<NA> ggparent=<NA>
+      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
+      k8s.ns=<NA> k8s.pod=<NA> container=host'
+    policy: Read sensitive file untrusted
+    properties:
+      container.id: host
+      container.image.repository: <nil>
+      evt.time: "1.6251188804841452e+18"
+      fd.name: /etc/pam.d/common-password
+      k8s.ns.name: <nil>
+      k8s.pod.name: <nil>
+      proc.aname[2]: <nil>
+      proc.aname[3]: <nil>
+      proc.aname[4]: <nil>
+      proc.cmdline: gdm-session-wor
+      proc.name: gdm-session-wor
+      proc.pname: gdm-session-wor
+      user.loginuid: "1000"
+      user.name: root
+    result: fail
+    severity: medium
+    source: ""
+    timestamp:
+      nanos: 0
+      seconds: 0
+  - message: '05:54:40.484153223: Warning Sensitive file opened for reading by non-trusted
+      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
+      file=/etc/pam.d/common-session parent=gdm-session-wor gparent=<NA> ggparent=<NA>
+      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
+      k8s.ns=<NA> k8s.pod=<NA> container=host'
+    policy: Read sensitive file untrusted
+    properties:
+      container.id: host
+      container.image.repository: <nil>
+      evt.time: "1.6251188804841533e+18"
+      fd.name: /etc/pam.d/common-session
+      k8s.ns.name: <nil>
+      k8s.pod.name: <nil>
+      proc.aname[2]: <nil>
+      proc.aname[3]: <nil>
+      proc.aname[4]: <nil>
+      proc.cmdline: gdm-session-wor
+      proc.name: gdm-session-wor
+      proc.pname: gdm-session-wor
+      user.loginuid: "1000"
+      user.name: root
+    result: fail
+    severity: medium
+    source: ""
+    timestamp:
+      nanos: 0
+      seconds: 0
+  - message: '05:54:40.484519040: Warning Sensitive file opened for reading by non-trusted
       program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
       file=/etc/shadow parent=gdm-session-wor gparent=<NA> ggparent=<NA> gggparent=<NA>
       container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA>
       k8s.pod=<NA> container=host'
     policy: Read sensitive file untrusted
+    properties:
+      container.id: host
+      container.image.repository: <nil>
+      evt.time: "1.625118880484519e+18"
+      fd.name: /etc/shadow
+      k8s.ns.name: <nil>
+      k8s.pod.name: <nil>
+      proc.aname[2]: <nil>
+      proc.aname[3]: <nil>
+      proc.aname[4]: <nil>
+      proc.cmdline: gdm-session-wor
+      proc.name: gdm-session-wor
+      proc.pname: gdm-session-wor
+      user.loginuid: "1000"
+      user.name: root
     result: fail
+    severity: medium
     source: ""
     timestamp:
       nanos: 0
       seconds: 0
-  - message: '14:19:05.696352495: Warning Sensitive file opened for reading by non-trusted
+  - message: '05:54:43.681006390: Warning Sensitive file opened for reading by non-trusted
       program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
       file=/etc/shadow parent=gdm-session-wor gparent=<NA> ggparent=<NA> gggparent=<NA>
       container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA>
       k8s.pod=<NA> container=host'
     policy: Read sensitive file untrusted
+    properties:
+      container.id: host
+      container.image.repository: <nil>
+      evt.time: "1.6251188836810063e+18"
+      fd.name: /etc/shadow
+      k8s.ns.name: <nil>
+      k8s.pod.name: <nil>
+      proc.aname[2]: <nil>
+      proc.aname[3]: <nil>
+      proc.aname[4]: <nil>
+      proc.cmdline: gdm-session-wor
+      proc.name: gdm-session-wor
+      proc.pname: gdm-session-wor
+      user.loginuid: "1000"
+      user.name: root
     result: fail
+    severity: medium
     source: ""
     timestamp:
       nanos: 0
       seconds: 0
-  - message: '14:19:05.696490800: Warning Sensitive file opened for reading by non-trusted
+  - message: '05:54:43.681097302: Warning Sensitive file opened for reading by non-trusted
       program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
       file=/etc/shadow parent=gdm-session-wor gparent=<NA> ggparent=<NA> gggparent=<NA>
       container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA>
       k8s.pod=<NA> container=host'
     policy: Read sensitive file untrusted
+    properties:
+      container.id: host
+      container.image.repository: <nil>
+      evt.time: "1.6251188836810972e+18"
+      fd.name: /etc/shadow
+      k8s.ns.name: <nil>
+      k8s.pod.name: <nil>
+      proc.aname[2]: <nil>
+      proc.aname[3]: <nil>
+      proc.aname[4]: <nil>
+      proc.cmdline: gdm-session-wor
+      proc.name: gdm-session-wor
+      proc.pname: gdm-session-wor
+      user.loginuid: "1000"
+      user.name: root
     result: fail
+    severity: medium
     source: ""
     timestamp:
       nanos: 0
       seconds: 0
-  - message: '14:19:05.711311814: Warning Sensitive file opened for reading by non-trusted
+  - message: '05:54:43.700747348: Warning Sensitive file opened for reading by non-trusted
       program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
       file=/etc/shadow parent=gdm-session-wor gparent=<NA> ggparent=<NA> gggparent=<NA>
       container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA>
       k8s.pod=<NA> container=host'
     policy: Read sensitive file untrusted
+    properties:
+      container.id: host
+      container.image.repository: <nil>
+      evt.time: "1.6251188837007473e+18"
+      fd.name: /etc/shadow
+      k8s.ns.name: <nil>
+      k8s.pod.name: <nil>
+      proc.aname[2]: <nil>
+      proc.aname[3]: <nil>
+      proc.aname[4]: <nil>
+      proc.cmdline: gdm-session-wor
+      proc.name: gdm-session-wor
+      proc.pname: gdm-session-wor
+      user.loginuid: "1000"
+      user.name: root
     result: fail
+    severity: medium
     source: ""
     timestamp:
       nanos: 0
       seconds: 0
-  - message: '14:36:30.815581768: Error File below / or /root opened for writing (user=<NA>
-      user_loginuid=-1 command=bash parent=bash file=res.yaml program=bash container_id=host
-      image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA> k8s.pod=<NA>
-      container=host'
-    policy: Write below root
+  - message: '06:33:16.102232074: Error File below /etc opened for writing (user=root
+      user_loginuid=-1 command=kube-controller --allocate-node-cidrs=true --authentication-kubeconfig=/etc/kubernetes/controller-manager.conf
+      --authorization-kubeconfig=/etc/kubernetes/controller-manager.conf --bind-address=127.0.0.1
+      --client-ca-file=/etc/kubernetes/pki/ca.crt --cluster-cidr=10.244.0.0/16 --cluster-name=kind
+      --cluster-signing-cert-file=/etc/kubernetes/pki/ca.crt --cluster-signing-key-file=/etc/kubernetes/pki/ca.key
+      --controllers=*,bootstrapsigner,tokencleaner --enable-hostpath-provisioner=true
+      --kubeconfig=/etc/kubernetes/controller-manager.conf --leader-elect=true --port=0
+      --requestheader-client-ca-file=/etc/kubernetes/pki/front-proxy-ca.crt --root-ca-file=/etc/kubernetes/pki/ca.crt
+      --service-account-private-key-file=/etc/kubernetes/pki/sa.key --service-cluster-ip-range=10.96.0.0/16
+      --use-service-account-credentials=true parent=containerd-shim pcmdline=containerd-shim
+      -namespace k8s.io -id 6451763eb1b88ee1b872e5f39104e992c6953d58f37fd7481978835ed5113f1d
+      -address /run/containerd/containerd.sock file=/etc/cups/subscriptions.conf.N
+      program=kube-controller gparent=systemd ggparent=<NA> gggparent=<NA> container_id=2c299777e6b6
+      image=k8s.gcr.io/kube-controller-manager) k8s.ns=kube-system k8s.pod=kube-controller-manager-kind-control-plane
+      container=2c299777e6b6 k8s.ns=kube-system k8s.pod=kube-controller-manager-kind-control-plane
+      container=2c299777e6b6'
+    policy: Write below etc
+    properties:
+      container.id: 2c299777e6b6
+      container.image.repository: k8s.gcr.io/kube-controller-manager
+      evt.time: "1.625121196102232e+18"
+      fd.name: /etc/cups/subscriptions.conf.N
+      k8s.ns.name: kube-system
+      k8s.pod.name: kube-controller-manager-kind-control-plane
+      proc.aname[2]: systemd
+      proc.aname[3]: <nil>
+      proc.aname[4]: <nil>
+      proc.cmdline: kube-controller --allocate-node-cidrs=true --authentication-kubeconfig=/etc/kubernetes/controller-manager.conf
+        --authorization-kubeconfig=/etc/kubernetes/controller-manager.conf --bind-address=127.0.0.1
+        --client-ca-file=/etc/kubernetes/pki/ca.crt --cluster-cidr=10.244.0.0/16 --cluster-name=kind
+        --cluster-signing-cert-file=/etc/kubernetes/pki/ca.crt --cluster-signing-key-file=/etc/kubernetes/pki/ca.key
+        --controllers=*,bootstrapsigner,tokencleaner --enable-hostpath-provisioner=true
+        --kubeconfig=/etc/kubernetes/controller-manager.conf --leader-elect=true --port=0
+        --requestheader-client-ca-file=/etc/kubernetes/pki/front-proxy-ca.crt --root-ca-file=/etc/kubernetes/pki/ca.crt
+        --service-account-private-key-file=/etc/kubernetes/pki/sa.key --service-cluster-ip-range=10.96.0.0/16
+        --use-service-account-credentials=true
+      proc.name: kube-controller
+      proc.pcmdline: containerd-shim -namespace k8s.io -id 6451763eb1b88ee1b872e5f39104e992c6953d58f37fd7481978835ed5113f1d
+        -address /run/containerd/containerd.sock
+      proc.pname: containerd-shim
+      user.loginuid: "-1"
+      user.name: root
     result: fail
+    severity: high
     source: ""
     timestamp:
       nanos: 0
       seconds: 0
-  - message: '14:48:20.191182914: Warning Sensitive file opened for reading by non-trusted
+  - message: '07:15:01.988214400: Warning Sensitive file opened for reading by non-trusted
       program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
       file=/etc/pam.d/gdm-password parent=gdm-session-wor gparent=<NA> ggparent=<NA>
       gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
       k8s.ns=<NA> k8s.pod=<NA> container=host'
     policy: Read sensitive file untrusted
+    properties:
+      container.id: host
+      container.image.repository: <nil>
+      evt.time: "1.6251237019882143e+18"
+      fd.name: /etc/pam.d/gdm-password
+      k8s.ns.name: <nil>
+      k8s.pod.name: <nil>
+      proc.aname[2]: <nil>
+      proc.aname[3]: <nil>
+      proc.aname[4]: <nil>
+      proc.cmdline: gdm-session-wor
+      proc.name: gdm-session-wor
+      proc.pname: gdm-session-wor
+      user.loginuid: "1000"
+      user.name: root
     result: fail
+    severity: medium
     source: ""
     timestamp:
       nanos: 0
       seconds: 0
-  - message: '14:48:20.191272616: Warning Sensitive file opened for reading by non-trusted
+  - message: '07:15:01.988310738: Warning Sensitive file opened for reading by non-trusted
       program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
       file=/etc/pam.d/common-auth parent=gdm-session-wor gparent=<NA> ggparent=<NA>
       gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
       k8s.ns=<NA> k8s.pod=<NA> container=host'
     policy: Read sensitive file untrusted
+    properties:
+      container.id: host
+      container.image.repository: <nil>
+      evt.time: "1.6251237019883108e+18"
+      fd.name: /etc/pam.d/common-auth
+      k8s.ns.name: <nil>
+      k8s.pod.name: <nil>
+      proc.aname[2]: <nil>
+      proc.aname[3]: <nil>
+      proc.aname[4]: <nil>
+      proc.cmdline: gdm-session-wor
+      proc.name: gdm-session-wor
+      proc.pname: gdm-session-wor
+      user.loginuid: "1000"
+      user.name: root
     result: fail
+    severity: medium
     source: ""
     timestamp:
       nanos: 0
       seconds: 0
-  - message: '14:48:20.191545884: Warning Sensitive file opened for reading by non-trusted
+  - message: '07:15:01.988569388: Warning Sensitive file opened for reading by non-trusted
       program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
       file=/etc/pam.d/common-account parent=gdm-session-wor gparent=<NA> ggparent=<NA>
       gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
       k8s.ns=<NA> k8s.pod=<NA> container=host'
     policy: Read sensitive file untrusted
+    properties:
+      container.id: host
+      container.image.repository: <nil>
+      evt.time: "1.6251237019885693e+18"
+      fd.name: /etc/pam.d/common-account
+      k8s.ns.name: <nil>
+      k8s.pod.name: <nil>
+      proc.aname[2]: <nil>
+      proc.aname[3]: <nil>
+      proc.aname[4]: <nil>
+      proc.cmdline: gdm-session-wor
+      proc.name: gdm-session-wor
+      proc.pname: gdm-session-wor
+      user.loginuid: "1000"
+      user.name: root
     result: fail
+    severity: medium
     source: ""
     timestamp:
       nanos: 0
       seconds: 0
-  - message: '14:48:20.191703602: Warning Sensitive file opened for reading by non-trusted
+  - message: '07:15:01.988713072: Warning Sensitive file opened for reading by non-trusted
       program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
       file=/etc/pam.d/common-session parent=gdm-session-wor gparent=<NA> ggparent=<NA>
       gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
       k8s.ns=<NA> k8s.pod=<NA> container=host'
     policy: Read sensitive file untrusted
+    properties:
+      container.id: host
+      container.image.repository: <nil>
+      evt.time: "1.625123701988713e+18"
+      fd.name: /etc/pam.d/common-session
+      k8s.ns.name: <nil>
+      k8s.pod.name: <nil>
+      proc.aname[2]: <nil>
+      proc.aname[3]: <nil>
+      proc.aname[4]: <nil>
+      proc.cmdline: gdm-session-wor
+      proc.name: gdm-session-wor
+      proc.pname: gdm-session-wor
+      user.loginuid: "1000"
+      user.name: root
     result: fail
+    severity: medium
     source: ""
     timestamp:
       nanos: 0
       seconds: 0
-  - message: '14:48:20.191838455: Warning Sensitive file opened for reading by non-trusted
+  - message: '07:15:01.988837576: Warning Sensitive file opened for reading by non-trusted
       program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
       file=/etc/pam.d/common-password parent=gdm-session-wor gparent=<NA> ggparent=<NA>
       gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
       k8s.ns=<NA> k8s.pod=<NA> container=host'
     policy: Read sensitive file untrusted
+    properties:
+      container.id: host
+      container.image.repository: <nil>
+      evt.time: "1.6251237019888376e+18"
+      fd.name: /etc/pam.d/common-password
+      k8s.ns.name: <nil>
+      k8s.pod.name: <nil>
+      proc.aname[2]: <nil>
+      proc.aname[3]: <nil>
+      proc.aname[4]: <nil>
+      proc.cmdline: gdm-session-wor
+      proc.name: gdm-session-wor
+      proc.pname: gdm-session-wor
+      user.loginuid: "1000"
+      user.name: root
     result: fail
+    severity: medium
     source: ""
     timestamp:
       nanos: 0
       seconds: 0
-  - message: '14:48:20.191849104: Warning Sensitive file opened for reading by non-trusted
+  - message: '07:15:01.988847558: Warning Sensitive file opened for reading by non-trusted
       program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
       file=/etc/pam.d/other parent=gdm-session-wor gparent=<NA> ggparent=<NA> gggparent=<NA>
       container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA>
       k8s.pod=<NA> container=host'
     policy: Read sensitive file untrusted
+    properties:
+      container.id: host
+      container.image.repository: <nil>
+      evt.time: "1.6251237019888476e+18"
+      fd.name: /etc/pam.d/other
+      k8s.ns.name: <nil>
+      k8s.pod.name: <nil>
+      proc.aname[2]: <nil>
+      proc.aname[3]: <nil>
+      proc.aname[4]: <nil>
+      proc.cmdline: gdm-session-wor
+      proc.name: gdm-session-wor
+      proc.pname: gdm-session-wor
+      user.loginuid: "1000"
+      user.name: root
     result: fail
+    severity: medium
     source: ""
     timestamp:
       nanos: 0
       seconds: 0
-  - message: '14:48:20.191852736: Warning Sensitive file opened for reading by non-trusted
+  - message: '07:15:01.988850854: Warning Sensitive file opened for reading by non-trusted
       program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
       file=/etc/pam.d/common-auth parent=gdm-session-wor gparent=<NA> ggparent=<NA>
       gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
       k8s.ns=<NA> k8s.pod=<NA> container=host'
     policy: Read sensitive file untrusted
+    properties:
+      container.id: host
+      container.image.repository: <nil>
+      evt.time: "1.625123701988851e+18"
+      fd.name: /etc/pam.d/common-auth
+      k8s.ns.name: <nil>
+      k8s.pod.name: <nil>
+      proc.aname[2]: <nil>
+      proc.aname[3]: <nil>
+      proc.aname[4]: <nil>
+      proc.cmdline: gdm-session-wor
+      proc.name: gdm-session-wor
+      proc.pname: gdm-session-wor
+      user.loginuid: "1000"
+      user.name: root
     result: fail
+    severity: medium
     source: ""
     timestamp:
       nanos: 0
       seconds: 0
-  - message: '14:48:20.191861646: Warning Sensitive file opened for reading by non-trusted
+  - message: '07:15:01.988859586: Warning Sensitive file opened for reading by non-trusted
       program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
       file=/etc/pam.d/common-account parent=gdm-session-wor gparent=<NA> ggparent=<NA>
       gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
       k8s.ns=<NA> k8s.pod=<NA> container=host'
     policy: Read sensitive file untrusted
+    properties:
+      container.id: host
+      container.image.repository: <nil>
+      evt.time: "1.6251237019888596e+18"
+      fd.name: /etc/pam.d/common-account
+      k8s.ns.name: <nil>
+      k8s.pod.name: <nil>
+      proc.aname[2]: <nil>
+      proc.aname[3]: <nil>
+      proc.aname[4]: <nil>
+      proc.cmdline: gdm-session-wor
+      proc.name: gdm-session-wor
+      proc.pname: gdm-session-wor
+      user.loginuid: "1000"
+      user.name: root
     result: fail
+    severity: medium
     source: ""
     timestamp:
       nanos: 0
       seconds: 0
-  - message: '14:48:20.191869044: Warning Sensitive file opened for reading by non-trusted
+  - message: '07:15:01.988866733: Warning Sensitive file opened for reading by non-trusted
       program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
       file=/etc/pam.d/common-password parent=gdm-session-wor gparent=<NA> ggparent=<NA>
       gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
       k8s.ns=<NA> k8s.pod=<NA> container=host'
     policy: Read sensitive file untrusted
+    properties:
+      container.id: host
+      container.image.repository: <nil>
+      evt.time: "1.6251237019888668e+18"
+      fd.name: /etc/pam.d/common-password
+      k8s.ns.name: <nil>
+      k8s.pod.name: <nil>
+      proc.aname[2]: <nil>
+      proc.aname[3]: <nil>
+      proc.aname[4]: <nil>
+      proc.cmdline: gdm-session-wor
+      proc.name: gdm-session-wor
+      proc.pname: gdm-session-wor
+      user.loginuid: "1000"
+      user.name: root
     result: fail
+    severity: medium
     source: ""
     timestamp:
       nanos: 0
       seconds: 0
-  - message: '14:48:20.191876857: Warning Sensitive file opened for reading by non-trusted
+  - message: '07:15:01.988874525: Warning Sensitive file opened for reading by non-trusted
       program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
       file=/etc/pam.d/common-session parent=gdm-session-wor gparent=<NA> ggparent=<NA>
       gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
       k8s.ns=<NA> k8s.pod=<NA> container=host'
     policy: Read sensitive file untrusted
+    properties:
+      container.id: host
+      container.image.repository: <nil>
+      evt.time: "1.6251237019888745e+18"
+      fd.name: /etc/pam.d/common-session
+      k8s.ns.name: <nil>
+      k8s.pod.name: <nil>
+      proc.aname[2]: <nil>
+      proc.aname[3]: <nil>
+      proc.aname[4]: <nil>
+      proc.cmdline: gdm-session-wor
+      proc.name: gdm-session-wor
+      proc.pname: gdm-session-wor
+      user.loginuid: "1000"
+      user.name: root
     result: fail
+    severity: medium
     source: ""
     timestamp:
       nanos: 0
       seconds: 0
-  - message: '14:48:20.192290027: Warning Sensitive file opened for reading by non-trusted
+  - message: '07:15:01.989259075: Warning Sensitive file opened for reading by non-trusted
       program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
       file=/etc/shadow parent=gdm-session-wor gparent=<NA> ggparent=<NA> gggparent=<NA>
       container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA>
       k8s.pod=<NA> container=host'
     policy: Read sensitive file untrusted
+    properties:
+      container.id: host
+      container.image.repository: <nil>
+      evt.time: "1.625123701989259e+18"
+      fd.name: /etc/shadow
+      k8s.ns.name: <nil>
+      k8s.pod.name: <nil>
+      proc.aname[2]: <nil>
+      proc.aname[3]: <nil>
+      proc.aname[4]: <nil>
+      proc.cmdline: gdm-session-wor
+      proc.name: gdm-session-wor
+      proc.pname: gdm-session-wor
+      user.loginuid: "1000"
+      user.name: root
     result: fail
+    severity: medium
     source: ""
     timestamp:
       nanos: 0
       seconds: 0
-  - message: '14:48:24.064372958: Warning Sensitive file opened for reading by non-trusted
+  - message: '07:15:05.418336436: Notice Packet socket was created in a container
+      (user=root user_loginuid=-1 command=kube-apiserver --advertise-address=172.18.0.2
+      --allow-privileged=true --authorization-mode=Node,RBAC --client-ca-file=/etc/kubernetes/pki/ca.crt
+      --enable-admission-plugins=NodeRestriction --enable-bootstrap-token-auth=true
+      --etcd-cafile=/etc/kubernetes/pki/etcd/ca.crt --etcd-certfile=/etc/kubernetes/pki/apiserver-etcd-client.crt
+      --etcd-keyfile=/etc/kubernetes/pki/apiserver-etcd-client.key --etcd-servers=https://127.0.0.1:2379
+      --insecure-port=0 --kubelet-client-certificate=/etc/kubernetes/pki/apiserver-kubelet-client.crt
+      --kubelet-client-key=/etc/kubernetes/pki/apiserver-kubelet-client.key --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
+      --proxy-client-cert-file=/etc/kubernetes/pki/front-proxy-client.crt --proxy-client-key-file=/etc/kubernetes/pki/front-proxy-client.key
+      --requestheader-allowed-names=front-proxy-client --requestheader-client-ca-file=/etc/kubernetes/pki/front-proxy-ca.crt
+      --requestheader-extra-headers-prefix=X-Remote-Extra- --requestheader-group-headers=X-Remote-Group
+      --requestheader-username-headers=X-Remote-User --runtime-config= --secure-port=6443
+      --service-account-issuer=https://kubernetes.default.svc.cluster.local --service-account-key-file=/etc/kubernetes/pki/sa.pub
+      --service-account-signing-key-file=/etc/kubernetes/pki/sa.key --service-cluster-ip-range=10.96.0.0/16
+      --tls-cert-file=/etc/kubernetes/pki/apiserver.crt --tls-private-key-file=/etc/kubernetes/pki/apiserver.key
+      socket_info=domain=17(AF_PACKET) type=526338 proto=0  container_id=e5fafde26904
+      container_name=kube-apiserver image=k8s.gcr.io/kube-apiserver:v1.21.1) k8s.ns=kube-system
+      k8s.pod=kube-apiserver-kind-control-plane container=e5fafde26904 k8s.ns=kube-system
+      k8s.pod=kube-apiserver-kind-control-plane container=e5fafde26904'
+    policy: Packet socket created in container
+    properties:
+      container.id: e5fafde26904
+      container.image.repository: k8s.gcr.io/kube-apiserver
+      container.image.tag: v1.21.1
+      container.name: kube-apiserver
+      evt.args: 'domain=17(AF_PACKET) type=526338 proto=0 '
+      evt.time: "1.6251237054183365e+18"
+      k8s.ns.name: kube-system
+      k8s.pod.name: kube-apiserver-kind-control-plane
+      proc.cmdline: kube-apiserver --advertise-address=172.18.0.2 --allow-privileged=true
+        --authorization-mode=Node,RBAC --client-ca-file=/etc/kubernetes/pki/ca.crt
+        --enable-admission-plugins=NodeRestriction --enable-bootstrap-token-auth=true
+        --etcd-cafile=/etc/kubernetes/pki/etcd/ca.crt --etcd-certfile=/etc/kubernetes/pki/apiserver-etcd-client.crt
+        --etcd-keyfile=/etc/kubernetes/pki/apiserver-etcd-client.key --etcd-servers=https://127.0.0.1:2379
+        --insecure-port=0 --kubelet-client-certificate=/etc/kubernetes/pki/apiserver-kubelet-client.crt
+        --kubelet-client-key=/etc/kubernetes/pki/apiserver-kubelet-client.key --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
+        --proxy-client-cert-file=/etc/kubernetes/pki/front-proxy-client.crt --proxy-client-key-file=/etc/kubernetes/pki/front-proxy-client.key
+        --requestheader-allowed-names=front-proxy-client --requestheader-client-ca-file=/etc/kubernetes/pki/front-proxy-ca.crt
+        --requestheader-extra-headers-prefix=X-Remote-Extra- --requestheader-group-headers=X-Remote-Group
+        --requestheader-username-headers=X-Remote-User --runtime-config= --secure-port=6443
+        --service-account-issuer=https://kubernetes.default.svc.cluster.local --service-account-key-file=/etc/kubernetes/pki/sa.pub
+        --service-account-signing-key-file=/etc/kubernetes/pki/sa.key --service-cluster-ip-range=10.96.0.0/16
+        --tls-cert-file=/etc/kubernetes/pki/apiserver.crt --tls-private-key-file=/etc/kubernetes/pki/apiserver.key
+      user.loginuid: "-1"
+      user.name: root
+    result: fail
+    severity: medium
+    source: ""
+    timestamp:
+      nanos: 0
+      seconds: 0
+  - message: '07:15:12.572687246: Warning Sensitive file opened for reading by non-trusted
       program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
       file=/etc/shadow parent=gdm-session-wor gparent=<NA> ggparent=<NA> gggparent=<NA>
       container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA>
       k8s.pod=<NA> container=host'
     policy: Read sensitive file untrusted
+    properties:
+      container.id: host
+      container.image.repository: <nil>
+      evt.time: "1.6251237125726874e+18"
+      fd.name: /etc/shadow
+      k8s.ns.name: <nil>
+      k8s.pod.name: <nil>
+      proc.aname[2]: <nil>
+      proc.aname[3]: <nil>
+      proc.aname[4]: <nil>
+      proc.cmdline: gdm-session-wor
+      proc.name: gdm-session-wor
+      proc.pname: gdm-session-wor
+      user.loginuid: "1000"
+      user.name: root
     result: fail
+    severity: medium
     source: ""
     timestamp:
       nanos: 0
       seconds: 0
-  - message: '14:48:24.064424464: Warning Sensitive file opened for reading by non-trusted
+  - message: '07:15:12.572828593: Warning Sensitive file opened for reading by non-trusted
       program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
       file=/etc/shadow parent=gdm-session-wor gparent=<NA> ggparent=<NA> gggparent=<NA>
       container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA>
       k8s.pod=<NA> container=host'
     policy: Read sensitive file untrusted
+    properties:
+      container.id: host
+      container.image.repository: <nil>
+      evt.time: "1.6251237125728287e+18"
+      fd.name: /etc/shadow
+      k8s.ns.name: <nil>
+      k8s.pod.name: <nil>
+      proc.aname[2]: <nil>
+      proc.aname[3]: <nil>
+      proc.aname[4]: <nil>
+      proc.cmdline: gdm-session-wor
+      proc.name: gdm-session-wor
+      proc.pname: gdm-session-wor
+      user.loginuid: "1000"
+      user.name: root
     result: fail
+    severity: medium
     source: ""
     timestamp:
       nanos: 0
       seconds: 0
-  - message: '14:48:24.070263839: Warning Sensitive file opened for reading by non-trusted
+  - message: '07:15:12.586737903: Warning Sensitive file opened for reading by non-trusted
       program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
       file=/etc/shadow parent=gdm-session-wor gparent=<NA> ggparent=<NA> gggparent=<NA>
       container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA>
       k8s.pod=<NA> container=host'
     policy: Read sensitive file untrusted
+    properties:
+      container.id: host
+      container.image.repository: <nil>
+      evt.time: "1.625123712586738e+18"
+      fd.name: /etc/shadow
+      k8s.ns.name: <nil>
+      k8s.pod.name: <nil>
+      proc.aname[2]: <nil>
+      proc.aname[3]: <nil>
+      proc.aname[4]: <nil>
+      proc.cmdline: gdm-session-wor
+      proc.name: gdm-session-wor
+      proc.pname: gdm-session-wor
+      user.loginuid: "1000"
+      user.name: root
     result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '14:53:36.171495110: Error File below / or /root opened for writing (user=<NA>
-      user_loginuid=-1 command=bash parent=bash file=res.yaml program=bash container_id=host
-      image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA> k8s.pod=<NA>
-      container=host'
-    policy: Write below root
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '15:00:46.957294884: Error File below / or /root opened for writing (user=<NA>
-      user_loginuid=-1 command=bash parent=bash file=res.yaml program=bash container_id=host
-      image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA> k8s.pod=<NA>
-      container=host'
-    policy: Write below root
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '15:11:10.324839019: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/gdm-password parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '15:11:10.324934596: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-auth parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '15:11:10.325192577: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-account parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '15:11:10.325348946: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-session parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '15:11:10.325487864: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-password parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '15:11:10.325499066: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/other parent=gdm-session-wor gparent=<NA> ggparent=<NA> gggparent=<NA>
-      container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA>
-      k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '15:11:10.325503319: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-auth parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '15:11:10.325513019: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-account parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '15:11:10.325520780: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-password parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '15:11:10.325528826: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-session parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '15:11:10.325923555: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/shadow parent=gdm-session-wor gparent=<NA> ggparent=<NA> gggparent=<NA>
-      container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA>
-      k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '15:11:12.996564126: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/shadow parent=gdm-session-wor gparent=<NA> ggparent=<NA> gggparent=<NA>
-      container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA>
-      k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '15:11:12.996602166: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/shadow parent=gdm-session-wor gparent=<NA> ggparent=<NA> gggparent=<NA>
-      container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA>
-      k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '15:11:13.002088066: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/shadow parent=gdm-session-wor gparent=<NA> ggparent=<NA> gggparent=<NA>
-      container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA>
-      k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '15:24:20.982161825: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/gdm-password parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '15:24:20.982252566: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-auth parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '15:24:20.982510696: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-account parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '15:24:20.982653630: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-session parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '15:24:20.982782767: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-password parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '15:24:20.982793394: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/other parent=gdm-session-wor gparent=<NA> ggparent=<NA> gggparent=<NA>
-      container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA>
-      k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '15:24:20.982796860: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-auth parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '15:24:20.982806140: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-account parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '15:24:20.982813448: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-password parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '15:24:20.982821646: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-session parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '15:24:20.983272022: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/shadow parent=gdm-session-wor gparent=<NA> ggparent=<NA> gggparent=<NA>
-      container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA>
-      k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '15:24:24.017172150: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/shadow parent=gdm-session-wor gparent=<NA> ggparent=<NA> gggparent=<NA>
-      container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA>
-      k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '15:24:24.017226032: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/shadow parent=gdm-session-wor gparent=<NA> ggparent=<NA> gggparent=<NA>
-      container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA>
-      k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '15:24:24.022850083: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/shadow parent=gdm-session-wor gparent=<NA> ggparent=<NA> gggparent=<NA>
-      container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA>
-      k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '17:02:47.988327571: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/gdm-password parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '17:02:47.988724528: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-account parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '17:02:47.988453419: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-auth parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '17:02:47.988872256: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-session parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '17:02:47.989001677: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-password parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '17:02:47.989013308: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/other parent=gdm-session-wor gparent=<NA> ggparent=<NA> gggparent=<NA>
-      container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA>
-      k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '17:02:47.989016891: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-auth parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '17:02:47.989026036: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-account parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '17:02:47.989034086: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-password parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '17:02:47.989418013: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/shadow parent=gdm-session-wor gparent=<NA> ggparent=<NA> gggparent=<NA>
-      container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA>
-      k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '17:02:47.989041987: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-session parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '17:02:50.737925835: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/shadow parent=gdm-session-wor gparent=<NA> ggparent=<NA> gggparent=<NA>
-      container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA>
-      k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    result: fail
-    source: ""
-    timestamp:
-      nanos: 0
-      seconds: 0
-  - message: '17:13:03.233381875: Error File below / or /root opened for writing (user=<NA>
-      user_loginuid=-1 command=bash parent=bash file=res.yaml program=bash container_id=host
-      image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA> k8s.pod=<NA>
-      container=host'
-    policy: Write below root
-    result: fail
+    severity: medium
     source: ""
     timestamp:
       nanos: 0
       seconds: 0
   summary:
     error: 0
-    fail: 72
+    fail: 30
     pass: 0
     skip: 0
     warn: 0

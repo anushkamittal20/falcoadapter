@@ -12,6 +12,8 @@ import (
 	"path/filepath"
 	"strings"
 
+	//"time"
+
 	"github.com/anushkamittal20/falcoadapter/pkg/apis/wgpolicyk8s.io/v1alpha2"
 	policyreport "github.com/anushkamittal20/falcoadapter/pkg/apis/wgpolicyk8s.io/v1alpha2"
 	client "github.com/anushkamittal20/falcoadapter/pkg/generated/v1alpha2/clientset/versioned"
@@ -26,6 +28,7 @@ type Alerts struct {
 }
 
 func main() {
+	//Getting output via falco sidekick webui/events
 	resp, err := http.Get("http://localhost:2802/events")
 	// Error checking of the http.Get() request
 	if err != nil {
@@ -61,9 +64,9 @@ func main() {
 		panic(err)
 	}
 	ats := clientset.Wgpolicyk8sV1alpha2().PolicyReports("default")
-	deployment := &policyreport.PolicyReport{
+	report := &policyreport.PolicyReport{
 		ObjectMeta: metav1.ObjectMeta{
-			Name: "dummy-policy-report8",
+			Name: "dummy-preport1",
 		},
 		Summary: v1alpha2.PolicyReportSummary{
 
@@ -71,15 +74,17 @@ func main() {
 		},
 	}
 	for _, al := range controls.Alert {
-		fmt.Printf("Alert: \n Rule- %v\nPriority- %v\nTime- %v\nOutput- %v \n\n Output fields %v\n\n\n", al.Rule, al.Priority, al.Time, al.Output, al.OutputFields)
+		//Simply printing the output
+		//fmt.Printf("Alert: \n Rule- %v\nPriority- %v\nTime- %v\nOutput- %v \n\n Output fields %v\n\n\n", al.Rule, al.Priority, al.Time, al.Output, al.OutputFields)
+
 		r := newResult(al)
-		deployment.Results = append(deployment.Results, r)
+		report.Results = append(report.Results, r)
 
 	}
-	fmt.Printf("\n\n\n %q,%q,%q,%q", deployment.Results[0].Policy, deployment.Results[1].Severity, deployment.Results[2].Result, deployment.Results[3].Description)
-	// Create Deployment
+	//fmt.Printf("\n\n\n %q,%q,%q,%q", report.Results[0].Policy, report.Results[1].Severity, report.Results[2].Result, report.Results[3].Description)
+	// Create Policy report
 	fmt.Println("Creating policy-report...")
-	result, err := ats.Create(context.TODO(), deployment, metav1.CreateOptions{})
+	result, err := ats.Create(context.TODO(), report, metav1.CreateOptions{})
 	if err != nil {
 		panic(err)
 	}
@@ -96,12 +101,30 @@ func convert(jsonString string) (*Alerts, error) {
 	}
 	return &controls, nil
 }
-func newResult(FalcoPayload types.FalcoPayload) *policyreport.PolicyReportResult {
-	return &policyreport.PolicyReportResult{
-		Policy: FalcoPayload.Rule,
 
-		//Severity:    policyreport.PolicyResultSeverity(FalcoPayload.Priority),
+//basic mapping done
+func newResult(FalcoPayload types.FalcoPayload) *policyreport.PolicyReportResult {
+
+	var pri string
+	if FalcoPayload.Priority > 4 {
+		pri = "high"
+	} else if FalcoPayload.Priority < 3 {
+		pri = "low"
+	} else {
+		pri = "medium"
+	}
+	var m = make(map[string]string)
+	for index, element := range FalcoPayload.OutputFields {
+		m[index] = fmt.Sprintf("%v", element)
+	}
+	return &policyreport.PolicyReportResult{
+
+		Policy: FalcoPayload.Rule,
+		Scored: false,
+		//Timestamp: metav1.Timestamp(time.Now()) ,
+		Severity:    v1alpha2.PolicyResultSeverity(pri),
 		Result:      "fail",
 		Description: FalcoPayload.Output,
+		Properties:  m,
 	}
 }
