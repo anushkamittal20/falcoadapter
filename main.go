@@ -12,8 +12,6 @@ import (
 	"path/filepath"
 	"strings"
 
-	//"time"
-
 	"github.com/anushkamittal20/falcoadapter/pkg/apis/wgpolicyk8s.io/v1alpha2"
 	policyreport "github.com/anushkamittal20/falcoadapter/pkg/apis/wgpolicyk8s.io/v1alpha2"
 	client "github.com/anushkamittal20/falcoadapter/pkg/generated/v1alpha2/clientset/versioned"
@@ -66,13 +64,14 @@ func main() {
 	ats := clientset.Wgpolicyk8sV1alpha2().PolicyReports("default")
 	report := &policyreport.PolicyReport{
 		ObjectMeta: metav1.ObjectMeta{
-			Name: "dummy-preport1",
+			Name: "dummy-policy-report5",
 		},
 		Summary: v1alpha2.PolicyReportSummary{
 
 			Fail: len(controls.Alert),
 		},
 	}
+	fmt.Printf("Alert: \n Rule- %v\n %v\n %v", controls.Alert[0].Time.Second(), controls.Alert[0].Time.Nanosecond(), controls.Alert[0].Time)
 	for _, al := range controls.Alert {
 		//Simply printing the output
 		//fmt.Printf("Alert: \n Rule- %v\nPriority- %v\nTime- %v\nOutput- %v \n\n Output fields %v\n\n\n", al.Rule, al.Priority, al.Time, al.Output, al.OutputFields)
@@ -83,7 +82,7 @@ func main() {
 	}
 	//fmt.Printf("\n\n\n %q,%q,%q,%q", report.Results[0].Policy, report.Results[1].Severity, report.Results[2].Result, report.Results[3].Description)
 	// Create Policy report
-	fmt.Println("Creating policy-report...")
+	//fmt.Println("Creating policy-report...")
 	result, err := ats.Create(context.TODO(), report, metav1.CreateOptions{})
 	if err != nil {
 		panic(err)
@@ -119,9 +118,9 @@ func newResult(FalcoPayload types.FalcoPayload) *policyreport.PolicyReportResult
 	}
 	return &policyreport.PolicyReportResult{
 
-		Policy: FalcoPayload.Rule,
-		Scored: false,
-		//Timestamp: metav1.Timestamp(time.Now()) ,
+		Policy:      FalcoPayload.Rule,
+		Scored:      false,
+		Timestamp:   metav1.Timestamp{Seconds: int64(FalcoPayload.Time.Second()), Nanos: int32(FalcoPayload.Time.Nanosecond())},
 		Severity:    v1alpha2.PolicyResultSeverity(pri),
 		Result:      "fail",
 		Description: FalcoPayload.Output,
