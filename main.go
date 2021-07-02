@@ -64,14 +64,15 @@ func main() {
 	ats := clientset.Wgpolicyk8sV1alpha2().PolicyReports("default")
 	report := &policyreport.PolicyReport{
 		ObjectMeta: metav1.ObjectMeta{
-			Name: "dummy-policy-report5",
+			Name: "dummy-policy-report",
 		},
 		Summary: v1alpha2.PolicyReportSummary{
 
 			Fail: len(controls.Alert),
 		},
 	}
-	fmt.Printf("Alert: \n Rule- %v\n %v\n %v", controls.Alert[0].Time.Second(), controls.Alert[0].Time.Nanosecond(), controls.Alert[0].Time)
+	//checking the time that falco payload gives
+	//fmt.Printf("Alert: \n Rule- %v\n %v\n %v", controls.Alert[0].Time.Second(), controls.Alert[0].Time.Nanosecond(), controls.Alert[0].Time)
 	for _, al := range controls.Alert {
 		//Simply printing the output
 		//fmt.Printf("Alert: \n Rule- %v\nPriority- %v\nTime- %v\nOutput- %v \n\n Output fields %v\n\n\n", al.Rule, al.Priority, al.Time, al.Output, al.OutputFields)
