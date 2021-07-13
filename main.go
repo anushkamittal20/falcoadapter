@@ -13,7 +13,8 @@ import (
 	"strings"
 
 	"github.com/anushkamittal20/falcoadapter/pkg/apis/wgpolicyk8s.io/v1alpha2"
-	policyreport "github.com/anushkamittal20/falcoadapter/pkg/apis/wgpolicyk8s.io/v1alpha2"
+	//policyreport "github.com/anushkamittal20/falcoadapter/pkg/apis/wgpolicyk8s.io/v1alpha2"
+	clusterpolicyreport "github.com/anushkamittal20/falcoadapter/pkg/apis/wgpolicyk8s.io/v1alpha2"
 	client "github.com/anushkamittal20/falcoadapter/pkg/generated/v1alpha2/clientset/versioned"
 	"github.com/falcosecurity/falcosidekick/types"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -61,8 +62,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	ats := clientset.Wgpolicyk8sV1alpha2().PolicyReports("default")
-	report := &policyreport.PolicyReport{
+	ats := clientset.Wgpolicyk8sV1alpha2().ClusterPolicyReports()
+	report := &clusterpolicyreport.ClusterPolicyReport{
 		ObjectMeta: metav1.ObjectMeta{
 			Name: "dummy-policy-report",
 		},
@@ -103,8 +104,9 @@ func convert(jsonString string) (*Alerts, error) {
 }
 
 //basic mapping done
-func newResult(FalcoPayload types.FalcoPayload) *policyreport.PolicyReportResult {
+func newResult(FalcoPayload types.FalcoPayload) *clusterpolicyreport.PolicyReportResult {
 
+	const PolicyReportSource string = "Falco"
 	var pri string
 	if FalcoPayload.Priority > 4 {
 		pri = "high"
@@ -117,9 +119,10 @@ func newResult(FalcoPayload types.FalcoPayload) *policyreport.PolicyReportResult
 	for index, element := range FalcoPayload.OutputFields {
 		m[index] = fmt.Sprintf("%v", element)
 	}
-	return &policyreport.PolicyReportResult{
+	return &clusterpolicyreport.PolicyReportResult{
 
 		Policy:      FalcoPayload.Rule,
+		Source:      PolicyReportSource,
 		Scored:      false,
 		Timestamp:   metav1.Timestamp{Seconds: int64(FalcoPayload.Time.Second()), Nanos: int32(FalcoPayload.Time.Nanosecond())},
 		Severity:    v1alpha2.PolicyResultSeverity(pri),

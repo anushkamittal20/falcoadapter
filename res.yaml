@@ -1,1384 +1,191 @@
 apiVersion: v1
 items:
 - apiVersion: wgpolicyk8s.io/v1alpha2
-  kind: PolicyReport
+  kind: ClusterPolicyReport
   metadata:
-    creationTimestamp: "2021-07-02T14:19:53Z"
+    creationTimestamp: "2021-07-13T12:22:31Z"
     generation: 1
     name: dummy-policy-report
-    namespace: default
-    resourceVersion: "8565"
-    uid: f26f0ef6-264e-4008-8a56-5cf222caa538
+    resourceVersion: "2604"
+    uid: c0e6e283-e898-4a00-a911-e396c695dbb9
   results:
-  - message: '12:48:56.996747336: Error File below /etc opened for writing (user=<NA>
-      user_loginuid=-1 command=NetworkManager --no-daemon parent=<NA> pcmdline=<NA>
-      file=/etc/NetworkManager/system-connections/TP-Link_EBF8.nmconnection.MJTB50
-      program=NetworkManager gparent=<NA> ggparent=<NA> gggparent=<NA> container_id=host
-      image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA> k8s.pod=<NA>
-      container=host'
+  - message: |
+      Grep private keys or passwords activities found (user=%user.name user_loginuid=%user.loginuid command=%proc.cmdline container_id=%container.id container_name=%container.name image=%container.image.repository:%container.image.tag)
+    policy: Search Private Keys or Passwords
+    properties:
+      container.id: '%container.id'
+      container.image.repository: '%container.image.repository'
+      container.image.tag: '%container.image.tag'
+      container.name: '%container.name'
+      proc.cmdline: '%proc.cmdline'
+      user.loginuid: '%user.loginuid'
+      user.name: '%user.name'
+    result: fail
+    severity: medium
+    source: Falco
+    timestamp:
+      nanos: 409230874
+      seconds: 28
+  - message: K8s Serviceaccount Created (user=%ka.user.name user=%ka.target.name ns=%ka.target.namespace
+      resp=%ka.response.code decision=%ka.auth.decision reason=%ka.auth.reason)
+    policy: K8s Serviceaccount Created
+    properties:
+      ka.auth.decision: '%ka.auth.decision'
+      ka.auth.reason: '%ka.auth.reason'
+      ka.response.code: '%ka.response.code'
+      ka.target.name: '%ka.target.name'
+      ka.target.namespace: '%ka.target.namespace'
+      ka.user.name: '%ka.user.name'
+    result: fail
+    severity: low
+    source: Falco
+    timestamp:
+      nanos: 413738250
+      seconds: 30
+  - message: Disallowed namespace created (user=%ka.user.name ns=%ka.target.name)
+    policy: Create Disallowed Namespace
+    properties:
+      ka.target.name: '%ka.target.name'
+      ka.user.name: '%ka.user.name'
+    result: fail
+    severity: medium
+    source: Falco
+    timestamp:
+      nanos: 416327833
+      seconds: 34
+  - message: File below /etc opened for writing (user=%user.name user_loginuid=%user.loginuid
+      command=%proc.cmdline parent=%proc.pname pcmdline=%proc.pcmdline file=%fd.name
+      program=%proc.name gparent=%proc.aname[2] ggparent=%proc.aname[3] gggparent=%proc.aname[4]
+      container_id=%container.id image=%container.image.repository)
     policy: Write below etc
     properties:
-      container.id: host
-      container.image.repository: <nil>
-      evt.time: "1.6252301369967473e+18"
-      fd.name: /etc/NetworkManager/system-connections/TP-Link_EBF8.nmconnection.MJTB50
-      k8s.ns.name: <nil>
-      k8s.pod.name: <nil>
-      proc.aname[2]: <nil>
-      proc.aname[3]: <nil>
-      proc.aname[4]: <nil>
-      proc.cmdline: NetworkManager --no-daemon
-      proc.name: NetworkManager
-      proc.pcmdline: <nil>
-      proc.pname: <nil>
-      user.loginuid: "-1"
-      user.name: <nil>
+      container.id: '%container.id'
+      container.image.repository: '%container.image.repository'
+      fd.name: '%fd.name'
+      proc.aname: '%proc.aname'
+      proc.cmdline: '%proc.cmdline'
+      proc.name: '%proc.name'
+      proc.pcmdline: '%proc.pcmdline'
+      proc.pname: '%proc.pname'
+      user.loginuid: '%user.loginuid'
+      user.name: '%user.name'
     result: fail
     severity: high
-    source: ""
+    source: Falco
     timestamp:
-      nanos: 996747336
-      seconds: 56
-  - message: '12:54:07.080018290: Error File below / or /root opened for writing (user=<NA>
-      user_loginuid=-1 command=bash parent=bash file=res.yaml program=bash container_id=host
-      image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA> k8s.pod=<NA>
-      container=host'
-    policy: Write below root
+      nanos: 418381063
+      seconds: 37
+  - message: |
+      Setuid or setgid bit is set via chmod (fd=%evt.arg.fd filename=%evt.arg.filename mode=%evt.arg.mode user=%user.name user_loginuid=%user.loginuid process=%proc.name command=%proc.cmdline container_id=%container.id container_name=%container.name image=%container.image.repository:%container.image.tag)
+    policy: Set Setuid or Setgid bit
     properties:
-      container.id: host
-      container.image.repository: <nil>
-      evt.time: "1.6252304470800182e+18"
-      fd.name: res.yaml
-      k8s.ns.name: <nil>
-      k8s.pod.name: <nil>
-      proc.cmdline: bash
-      proc.name: bash
-      proc.pname: bash
-      user.loginuid: "-1"
-      user.name: <nil>
-    result: fail
-    severity: high
-    source: ""
-    timestamp:
-      nanos: 80018290
-      seconds: 7
-  - message: '13:06:04.450251794: Error File below / or /root opened for writing (user=<NA>
-      user_loginuid=-1 command=bash parent=bash file=res.yaml program=bash container_id=host
-      image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA> k8s.pod=<NA>
-      container=host'
-    policy: Write below root
-    properties:
-      container.id: host
-      container.image.repository: <nil>
-      evt.time: "1.6252311644502518e+18"
-      fd.name: res.yaml
-      k8s.ns.name: <nil>
-      k8s.pod.name: <nil>
-      proc.cmdline: bash
-      proc.name: bash
-      proc.pname: bash
-      user.loginuid: "-1"
-      user.name: <nil>
-    result: fail
-    severity: high
-    source: ""
-    timestamp:
-      nanos: 450251794
-      seconds: 4
-  - message: '13:06:15.829719387: Error File below / or /root opened for writing (user=<NA>
-      user_loginuid=-1 command=bash parent=bash file=res.yaml program=bash container_id=host
-      image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA> k8s.pod=<NA>
-      container=host'
-    policy: Write below root
-    properties:
-      container.id: host
-      container.image.repository: <nil>
-      evt.time: "1.6252311758297193e+18"
-      fd.name: res.yaml
-      k8s.ns.name: <nil>
-      k8s.pod.name: <nil>
-      proc.cmdline: bash
-      proc.name: bash
-      proc.pname: bash
-      user.loginuid: "-1"
-      user.name: <nil>
-    result: fail
-    severity: high
-    source: ""
-    timestamp:
-      nanos: 829719387
-      seconds: 15
-  - message: '13:18:48.658564807: Error File below / or /root opened for writing (user=<NA>
-      user_loginuid=-1 command=bash parent=bash file=res.yaml program=bash container_id=host
-      image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA> k8s.pod=<NA>
-      container=host'
-    policy: Write below root
-    properties:
-      container.id: host
-      container.image.repository: <nil>
-      evt.time: "1.6252319286585649e+18"
-      fd.name: res.yaml
-      k8s.ns.name: <nil>
-      k8s.pod.name: <nil>
-      proc.cmdline: bash
-      proc.name: bash
-      proc.pname: bash
-      user.loginuid: "-1"
-      user.name: <nil>
-    result: fail
-    severity: high
-    source: ""
-    timestamp:
-      nanos: 658564807
-      seconds: 48
-  - message: '13:20:26.696403631: Error File below / or /root opened for writing (user=<NA>
-      user_loginuid=-1 command=bash parent=bash file=res.yaml program=bash container_id=host
-      image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA> k8s.pod=<NA>
-      container=host'
-    policy: Write below root
-    properties:
-      container.id: host
-      container.image.repository: <nil>
-      evt.time: "1.6252320266964037e+18"
-      fd.name: res.yaml
-      k8s.ns.name: <nil>
-      k8s.pod.name: <nil>
-      proc.cmdline: bash
-      proc.name: bash
-      proc.pname: bash
-      user.loginuid: "-1"
-      user.name: <nil>
-    result: fail
-    severity: high
-    source: ""
-    timestamp:
-      nanos: 696403631
-      seconds: 26
-  - message: '14:04:51.748039993: Notice Packet socket was created in a container
-      (user=root user_loginuid=-1 command=kube-apiserver --advertise-address=172.18.0.2
-      --allow-privileged=true --authorization-mode=Node,RBAC --client-ca-file=/etc/kubernetes/pki/ca.crt
-      --enable-admission-plugins=NodeRestriction --enable-bootstrap-token-auth=true
-      --etcd-cafile=/etc/kubernetes/pki/etcd/ca.crt --etcd-certfile=/etc/kubernetes/pki/apiserver-etcd-client.crt
-      --etcd-keyfile=/etc/kubernetes/pki/apiserver-etcd-client.key --etcd-servers=https://127.0.0.1:2379
-      --insecure-port=0 --kubelet-client-certificate=/etc/kubernetes/pki/apiserver-kubelet-client.crt
-      --kubelet-client-key=/etc/kubernetes/pki/apiserver-kubelet-client.key --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
-      --proxy-client-cert-file=/etc/kubernetes/pki/front-proxy-client.crt --proxy-client-key-file=/etc/kubernetes/pki/front-proxy-client.key
-      --requestheader-allowed-names=front-proxy-client --requestheader-client-ca-file=/etc/kubernetes/pki/front-proxy-ca.crt
-      --requestheader-extra-headers-prefix=X-Remote-Extra- --requestheader-group-headers=X-Remote-Group
-      --requestheader-username-headers=X-Remote-User --runtime-config= --secure-port=6443
-      --service-account-issuer=https://kubernetes.default.svc.cluster.local --service-account-key-file=/etc/kubernetes/pki/sa.pub
-      --service-account-signing-key-file=/etc/kubernetes/pki/sa.key --service-cluster-ip-range=10.96.0.0/16
-      --tls-cert-file=/etc/kubernetes/pki/apiserver.crt --tls-private-key-file=/etc/kubernetes/pki/apiserver.key
-      socket_info=domain=17(AF_PACKET) type=2 proto=0  container_id=c64621531ee4 container_name=kube-apiserver
-      image=k8s.gcr.io/kube-apiserver:v1.21.1) k8s.ns=kube-system k8s.pod=kube-apiserver-kind-control-plane
-      container=c64621531ee4 k8s.ns=kube-system k8s.pod=kube-apiserver-kind-control-plane
-      container=c64621531ee4'
-    policy: Packet socket created in container
-    properties:
-      container.id: c64621531ee4
-      container.image.repository: k8s.gcr.io/kube-apiserver
-      container.image.tag: v1.21.1
-      container.name: kube-apiserver
-      evt.args: 'domain=17(AF_PACKET) type=2 proto=0 '
-      evt.time: "1.62523469174804e+18"
-      k8s.ns.name: kube-system
-      k8s.pod.name: kube-apiserver-kind-control-plane
-      proc.cmdline: kube-apiserver --advertise-address=172.18.0.2 --allow-privileged=true
-        --authorization-mode=Node,RBAC --client-ca-file=/etc/kubernetes/pki/ca.crt
-        --enable-admission-plugins=NodeRestriction --enable-bootstrap-token-auth=true
-        --etcd-cafile=/etc/kubernetes/pki/etcd/ca.crt --etcd-certfile=/etc/kubernetes/pki/apiserver-etcd-client.crt
-        --etcd-keyfile=/etc/kubernetes/pki/apiserver-etcd-client.key --etcd-servers=https://127.0.0.1:2379
-        --insecure-port=0 --kubelet-client-certificate=/etc/kubernetes/pki/apiserver-kubelet-client.crt
-        --kubelet-client-key=/etc/kubernetes/pki/apiserver-kubelet-client.key --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
-        --proxy-client-cert-file=/etc/kubernetes/pki/front-proxy-client.crt --proxy-client-key-file=/etc/kubernetes/pki/front-proxy-client.key
-        --requestheader-allowed-names=front-proxy-client --requestheader-client-ca-file=/etc/kubernetes/pki/front-proxy-ca.crt
-        --requestheader-extra-headers-prefix=X-Remote-Extra- --requestheader-group-headers=X-Remote-Group
-        --requestheader-username-headers=X-Remote-User --runtime-config= --secure-port=6443
-        --service-account-issuer=https://kubernetes.default.svc.cluster.local --service-account-key-file=/etc/kubernetes/pki/sa.pub
-        --service-account-signing-key-file=/etc/kubernetes/pki/sa.key --service-cluster-ip-range=10.96.0.0/16
-        --tls-cert-file=/etc/kubernetes/pki/apiserver.crt --tls-private-key-file=/etc/kubernetes/pki/apiserver.key
-      user.loginuid: "-1"
-      user.name: root
+      container.id: '%container.id'
+      container.image.repository: '%container.image.repository'
+      container.image.tag: '%container.image.tag'
+      container.name: '%container.name'
+      evt.arg.fd: '%evt.arg.fd'
+      evt.arg.filename: '%evt.arg.filename'
+      evt.arg.mode: '%evt.arg.mode'
+      proc.cmdline: '%proc.cmdline'
+      proc.name: '%proc.name'
+      user.loginuid: '%user.loginuid'
+      user.name: '%user.name'
     result: fail
     severity: medium
-    source: ""
+    source: Falco
     timestamp:
-      nanos: 748039993
-      seconds: 51
-  - message: '14:04:51.748360519: Notice Packet socket was created in a container
-      (user=root user_loginuid=-1 command=kube-apiserver --advertise-address=172.18.0.2
-      --allow-privileged=true --authorization-mode=Node,RBAC --client-ca-file=/etc/kubernetes/pki/ca.crt
-      --enable-admission-plugins=NodeRestriction --enable-bootstrap-token-auth=true
-      --etcd-cafile=/etc/kubernetes/pki/etcd/ca.crt --etcd-certfile=/etc/kubernetes/pki/apiserver-etcd-client.crt
-      --etcd-keyfile=/etc/kubernetes/pki/apiserver-etcd-client.key --etcd-servers=https://127.0.0.1:2379
-      --insecure-port=0 --kubelet-client-certificate=/etc/kubernetes/pki/apiserver-kubelet-client.crt
-      --kubelet-client-key=/etc/kubernetes/pki/apiserver-kubelet-client.key --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
-      --proxy-client-cert-file=/etc/kubernetes/pki/front-proxy-client.crt --proxy-client-key-file=/etc/kubernetes/pki/front-proxy-client.key
-      --requestheader-allowed-names=front-proxy-client --requestheader-client-ca-file=/etc/kubernetes/pki/front-proxy-ca.crt
-      --requestheader-extra-headers-prefix=X-Remote-Extra- --requestheader-group-headers=X-Remote-Group
-      --requestheader-username-headers=X-Remote-User --runtime-config= --secure-port=6443
-      --service-account-issuer=https://kubernetes.default.svc.cluster.local --service-account-key-file=/etc/kubernetes/pki/sa.pub
-      --service-account-signing-key-file=/etc/kubernetes/pki/sa.key --service-cluster-ip-range=10.96.0.0/16
-      --tls-cert-file=/etc/kubernetes/pki/apiserver.crt --tls-private-key-file=/etc/kubernetes/pki/apiserver.key
-      socket_info=domain=17(AF_PACKET) type=2 proto=36488  container_id=c64621531ee4
-      container_name=kube-apiserver image=k8s.gcr.io/kube-apiserver:v1.21.1) k8s.ns=kube-system
-      k8s.pod=kube-apiserver-kind-control-plane container=c64621531ee4 k8s.ns=kube-system
-      k8s.pod=kube-apiserver-kind-control-plane container=c64621531ee4'
-    policy: Packet socket created in container
+      nanos: 419295609
+      seconds: 37
+  - message: Attach/Exec to pod (user=%ka.user.name pod=%ka.target.name ns=%ka.target.namespace
+      action=%ka.target.subresource command=%ka.uri.param[command])
+    policy: Attach/Exec Pod
     properties:
-      container.id: c64621531ee4
-      container.image.repository: k8s.gcr.io/kube-apiserver
-      container.image.tag: v1.21.1
-      container.name: kube-apiserver
-      evt.args: 'domain=17(AF_PACKET) type=2 proto=36488 '
-      evt.time: "1.6252346917483604e+18"
-      k8s.ns.name: kube-system
-      k8s.pod.name: kube-apiserver-kind-control-plane
-      proc.cmdline: kube-apiserver --advertise-address=172.18.0.2 --allow-privileged=true
-        --authorization-mode=Node,RBAC --client-ca-file=/etc/kubernetes/pki/ca.crt
-        --enable-admission-plugins=NodeRestriction --enable-bootstrap-token-auth=true
-        --etcd-cafile=/etc/kubernetes/pki/etcd/ca.crt --etcd-certfile=/etc/kubernetes/pki/apiserver-etcd-client.crt
-        --etcd-keyfile=/etc/kubernetes/pki/apiserver-etcd-client.key --etcd-servers=https://127.0.0.1:2379
-        --insecure-port=0 --kubelet-client-certificate=/etc/kubernetes/pki/apiserver-kubelet-client.crt
-        --kubelet-client-key=/etc/kubernetes/pki/apiserver-kubelet-client.key --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
-        --proxy-client-cert-file=/etc/kubernetes/pki/front-proxy-client.crt --proxy-client-key-file=/etc/kubernetes/pki/front-proxy-client.key
-        --requestheader-allowed-names=front-proxy-client --requestheader-client-ca-file=/etc/kubernetes/pki/front-proxy-ca.crt
-        --requestheader-extra-headers-prefix=X-Remote-Extra- --requestheader-group-headers=X-Remote-Group
-        --requestheader-username-headers=X-Remote-User --runtime-config= --secure-port=6443
-        --service-account-issuer=https://kubernetes.default.svc.cluster.local --service-account-key-file=/etc/kubernetes/pki/sa.pub
-        --service-account-signing-key-file=/etc/kubernetes/pki/sa.key --service-cluster-ip-range=10.96.0.0/16
-        --tls-cert-file=/etc/kubernetes/pki/apiserver.crt --tls-private-key-file=/etc/kubernetes/pki/apiserver.key
-      user.loginuid: "-1"
-      user.name: root
+      ka.target.name: '%ka.target.name'
+      ka.target.namespace: '%ka.target.namespace'
+      ka.target.subresource: '%ka.target.subresource'
+      ka.uri.param: '%ka.uri.param'
+      ka.user.name: '%ka.user.name'
     result: fail
     severity: medium
-    source: ""
+    source: Falco
     timestamp:
-      nanos: 748360519
-      seconds: 51
-  - message: '14:04:51.769119709: Notice Packet socket was created in a container
-      (user=root user_loginuid=-1 command=kube-apiserver --advertise-address=172.18.0.2
-      --allow-privileged=true --authorization-mode=Node,RBAC --client-ca-file=/etc/kubernetes/pki/ca.crt
-      --enable-admission-plugins=NodeRestriction --enable-bootstrap-token-auth=true
-      --etcd-cafile=/etc/kubernetes/pki/etcd/ca.crt --etcd-certfile=/etc/kubernetes/pki/apiserver-etcd-client.crt
-      --etcd-keyfile=/etc/kubernetes/pki/apiserver-etcd-client.key --etcd-servers=https://127.0.0.1:2379
-      --insecure-port=0 --kubelet-client-certificate=/etc/kubernetes/pki/apiserver-kubelet-client.crt
-      --kubelet-client-key=/etc/kubernetes/pki/apiserver-kubelet-client.key --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
-      --proxy-client-cert-file=/etc/kubernetes/pki/front-proxy-client.crt --proxy-client-key-file=/etc/kubernetes/pki/front-proxy-client.key
-      --requestheader-allowed-names=front-proxy-client --requestheader-client-ca-file=/etc/kubernetes/pki/front-proxy-ca.crt
-      --requestheader-extra-headers-prefix=X-Remote-Extra- --requestheader-group-headers=X-Remote-Group
-      --requestheader-username-headers=X-Remote-User --runtime-config= --secure-port=6443
-      --service-account-issuer=https://kubernetes.default.svc.cluster.local --service-account-key-file=/etc/kubernetes/pki/sa.pub
-      --service-account-signing-key-file=/etc/kubernetes/pki/sa.key --service-cluster-ip-range=10.96.0.0/16
-      --tls-cert-file=/etc/kubernetes/pki/apiserver.crt --tls-private-key-file=/etc/kubernetes/pki/apiserver.key
-      socket_info=domain=17(AF_PACKET) type=2 proto=3465  container_id=c64621531ee4
-      container_name=kube-apiserver image=k8s.gcr.io/kube-apiserver:v1.21.1) k8s.ns=kube-system
-      k8s.pod=kube-apiserver-kind-control-plane container=c64621531ee4 k8s.ns=kube-system
-      k8s.pod=kube-apiserver-kind-control-plane container=c64621531ee4'
-    policy: Packet socket created in container
+      nanos: 419936110
+      seconds: 37
+  - message: |
+      K8s Ingress Without TLS Cert Created (user=%ka.user.name ingress=%ka.target.name namespace=%ka.target.namespace)
+    policy: Ingress Object without TLS Certificate Created
     properties:
-      container.id: c64621531ee4
-      container.image.repository: k8s.gcr.io/kube-apiserver
-      container.image.tag: v1.21.1
-      container.name: kube-apiserver
-      evt.args: 'domain=17(AF_PACKET) type=2 proto=3465 '
-      evt.time: "1.6252346917691197e+18"
-      k8s.ns.name: kube-system
-      k8s.pod.name: kube-apiserver-kind-control-plane
-      proc.cmdline: kube-apiserver --advertise-address=172.18.0.2 --allow-privileged=true
-        --authorization-mode=Node,RBAC --client-ca-file=/etc/kubernetes/pki/ca.crt
-        --enable-admission-plugins=NodeRestriction --enable-bootstrap-token-auth=true
-        --etcd-cafile=/etc/kubernetes/pki/etcd/ca.crt --etcd-certfile=/etc/kubernetes/pki/apiserver-etcd-client.crt
-        --etcd-keyfile=/etc/kubernetes/pki/apiserver-etcd-client.key --etcd-servers=https://127.0.0.1:2379
-        --insecure-port=0 --kubelet-client-certificate=/etc/kubernetes/pki/apiserver-kubelet-client.crt
-        --kubelet-client-key=/etc/kubernetes/pki/apiserver-kubelet-client.key --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
-        --proxy-client-cert-file=/etc/kubernetes/pki/front-proxy-client.crt --proxy-client-key-file=/etc/kubernetes/pki/front-proxy-client.key
-        --requestheader-allowed-names=front-proxy-client --requestheader-client-ca-file=/etc/kubernetes/pki/front-proxy-ca.crt
-        --requestheader-extra-headers-prefix=X-Remote-Extra- --requestheader-group-headers=X-Remote-Group
-        --requestheader-username-headers=X-Remote-User --runtime-config= --secure-port=6443
-        --service-account-issuer=https://kubernetes.default.svc.cluster.local --service-account-key-file=/etc/kubernetes/pki/sa.pub
-        --service-account-signing-key-file=/etc/kubernetes/pki/sa.key --service-cluster-ip-range=10.96.0.0/16
-        --tls-cert-file=/etc/kubernetes/pki/apiserver.crt --tls-private-key-file=/etc/kubernetes/pki/apiserver.key
-      user.loginuid: "-1"
-      user.name: root
+      ka.target.name: '%ka.target.name'
+      ka.target.namespace: '%ka.target.namespace'
+      ka.user.name: '%ka.user.name'
     result: fail
     severity: medium
-    source: ""
+    source: Falco
     timestamp:
-      nanos: 769119709
-      seconds: 51
-  - message: '14:04:52.046893888: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/gdm-password parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
+      nanos: 421219779
+      seconds: 38
+  - message: |
+      Bulk data has been removed from disk (user=%user.name user_loginuid=%user.loginuid command=%proc.cmdline file=%fd.name container_id=%container.id image=%container.image.repository)
+    policy: Remove Bulk Data from Disk
     properties:
-      container.id: host
-      container.image.repository: <nil>
-      evt.time: "1.6252346920468938e+18"
-      fd.name: /etc/pam.d/gdm-password
-      k8s.ns.name: <nil>
-      k8s.pod.name: <nil>
-      proc.aname[2]: <nil>
-      proc.aname[3]: <nil>
-      proc.aname[4]: <nil>
-      proc.cmdline: gdm-session-wor
-      proc.name: gdm-session-wor
-      proc.pname: gdm-session-wor
-      user.loginuid: "1000"
-      user.name: root
+      container.id: '%container.id'
+      container.image.repository: '%container.image.repository'
+      fd.name: '%fd.name'
+      proc.cmdline: '%proc.cmdline'
+      user.loginuid: '%user.loginuid'
+      user.name: '%user.name'
     result: fail
     severity: medium
-    source: ""
+    source: Falco
     timestamp:
-      nanos: 46893888
-      seconds: 52
-  - message: '14:04:52.046981503: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-auth parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
+      nanos: 423440684
+      seconds: 42
+  - message: Container with sensitive mount started (user=%user.name user_loginuid=%user.loginuid
+      command=%proc.cmdline %container.info image=%container.image.repository:%container.image.tag
+      mounts=%container.mounts)
+    policy: Launch Sensitive Mount Container
     properties:
-      container.id: host
-      container.image.repository: <nil>
-      evt.time: "1.6252346920469814e+18"
-      fd.name: /etc/pam.d/common-auth
-      k8s.ns.name: <nil>
-      k8s.pod.name: <nil>
-      proc.aname[2]: <nil>
-      proc.aname[3]: <nil>
-      proc.aname[4]: <nil>
-      proc.cmdline: gdm-session-wor
-      proc.name: gdm-session-wor
-      proc.pname: gdm-session-wor
-      user.loginuid: "1000"
-      user.name: root
+      container.image.repository: '%container.image.repository'
+      container.image.tag: '%container.image.tag'
+      container.info: '%container.info'
+      container.mounts: '%container.mounts'
+      proc.cmdline: '%proc.cmdline'
+      user.loginuid: '%user.loginuid'
+      user.name: '%user.name'
+    result: fail
+    severity: low
+    source: Falco
+    timestamp:
+      nanos: 425936289
+      seconds: 46
+  - message: Pod created in kube namespace (user=%ka.user.name pod=%ka.resp.name ns=%ka.target.namespace
+      images=%ka.req.pod.containers.image)
+    policy: Pod Created in Kube Namespace
+    properties:
+      ka.req.pod: '%ka.req.pod'
+      ka.resp.name: '%ka.resp.name'
+      ka.target.namespace: '%ka.target.namespace'
+      ka.user.name: '%ka.user.name'
     result: fail
     severity: medium
-    source: ""
+    source: Falco
     timestamp:
-      nanos: 46981503
-      seconds: 52
-  - message: '14:04:52.047246017: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-account parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
+      nanos: 426962125
+      seconds: 46
+  - message: Cluster Role Binding to cluster-admin role (user=%ka.user.name subject=%ka.req.binding.subjects)
+    policy: Attach to cluster-admin Role
     properties:
-      container.id: host
-      container.image.repository: <nil>
-      evt.time: "1.625234692047246e+18"
-      fd.name: /etc/pam.d/common-account
-      k8s.ns.name: <nil>
-      k8s.pod.name: <nil>
-      proc.aname[2]: <nil>
-      proc.aname[3]: <nil>
-      proc.aname[4]: <nil>
-      proc.cmdline: gdm-session-wor
-      proc.name: gdm-session-wor
-      proc.pname: gdm-session-wor
-      user.loginuid: "1000"
-      user.name: root
+      ka.req.binding: '%ka.req.binding'
+      ka.user.name: '%ka.user.name'
     result: fail
     severity: medium
-    source: ""
+    source: Falco
     timestamp:
-      nanos: 47246017
-      seconds: 52
-  - message: '14:04:52.047387726: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-session parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    properties:
-      container.id: host
-      container.image.repository: <nil>
-      evt.time: "1.6252346920473876e+18"
-      fd.name: /etc/pam.d/common-session
-      k8s.ns.name: <nil>
-      k8s.pod.name: <nil>
-      proc.aname[2]: <nil>
-      proc.aname[3]: <nil>
-      proc.aname[4]: <nil>
-      proc.cmdline: gdm-session-wor
-      proc.name: gdm-session-wor
-      proc.pname: gdm-session-wor
-      user.loginuid: "1000"
-      user.name: root
-    result: fail
-    severity: medium
-    source: ""
-    timestamp:
-      nanos: 47387726
-      seconds: 52
-  - message: '14:04:52.047516201: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-password parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    properties:
-      container.id: host
-      container.image.repository: <nil>
-      evt.time: "1.6252346920475162e+18"
-      fd.name: /etc/pam.d/common-password
-      k8s.ns.name: <nil>
-      k8s.pod.name: <nil>
-      proc.aname[2]: <nil>
-      proc.aname[3]: <nil>
-      proc.aname[4]: <nil>
-      proc.cmdline: gdm-session-wor
-      proc.name: gdm-session-wor
-      proc.pname: gdm-session-wor
-      user.loginuid: "1000"
-      user.name: root
-    result: fail
-    severity: medium
-    source: ""
-    timestamp:
-      nanos: 47516201
-      seconds: 52
-  - message: '14:04:52.047527901: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/other parent=gdm-session-wor gparent=<NA> ggparent=<NA> gggparent=<NA>
-      container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA>
-      k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    properties:
-      container.id: host
-      container.image.repository: <nil>
-      evt.time: "1.625234692047528e+18"
-      fd.name: /etc/pam.d/other
-      k8s.ns.name: <nil>
-      k8s.pod.name: <nil>
-      proc.aname[2]: <nil>
-      proc.aname[3]: <nil>
-      proc.aname[4]: <nil>
-      proc.cmdline: gdm-session-wor
-      proc.name: gdm-session-wor
-      proc.pname: gdm-session-wor
-      user.loginuid: "1000"
-      user.name: root
-    result: fail
-    severity: medium
-    source: ""
-    timestamp:
-      nanos: 47527901
-      seconds: 52
-  - message: '14:04:52.047531493: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-auth parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    properties:
-      container.id: host
-      container.image.repository: <nil>
-      evt.time: "1.6252346920475315e+18"
-      fd.name: /etc/pam.d/common-auth
-      k8s.ns.name: <nil>
-      k8s.pod.name: <nil>
-      proc.aname[2]: <nil>
-      proc.aname[3]: <nil>
-      proc.aname[4]: <nil>
-      proc.cmdline: gdm-session-wor
-      proc.name: gdm-session-wor
-      proc.pname: gdm-session-wor
-      user.loginuid: "1000"
-      user.name: root
-    result: fail
-    severity: medium
-    source: ""
-    timestamp:
-      nanos: 47531493
-      seconds: 52
-  - message: '14:04:52.047540671: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-account parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    properties:
-      container.id: host
-      container.image.repository: <nil>
-      evt.time: "1.6252346920475407e+18"
-      fd.name: /etc/pam.d/common-account
-      k8s.ns.name: <nil>
-      k8s.pod.name: <nil>
-      proc.aname[2]: <nil>
-      proc.aname[3]: <nil>
-      proc.aname[4]: <nil>
-      proc.cmdline: gdm-session-wor
-      proc.name: gdm-session-wor
-      proc.pname: gdm-session-wor
-      user.loginuid: "1000"
-      user.name: root
-    result: fail
-    severity: medium
-    source: ""
-    timestamp:
-      nanos: 47540671
-      seconds: 52
-  - message: '14:04:52.047548983: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-password parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    properties:
-      container.id: host
-      container.image.repository: <nil>
-      evt.time: "1.625234692047549e+18"
-      fd.name: /etc/pam.d/common-password
-      k8s.ns.name: <nil>
-      k8s.pod.name: <nil>
-      proc.aname[2]: <nil>
-      proc.aname[3]: <nil>
-      proc.aname[4]: <nil>
-      proc.cmdline: gdm-session-wor
-      proc.name: gdm-session-wor
-      proc.pname: gdm-session-wor
-      user.loginuid: "1000"
-      user.name: root
-    result: fail
-    severity: medium
-    source: ""
-    timestamp:
-      nanos: 47548983
-      seconds: 52
-  - message: '14:04:52.047556885: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-session parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    properties:
-      container.id: host
-      container.image.repository: <nil>
-      evt.time: "1.6252346920475569e+18"
-      fd.name: /etc/pam.d/common-session
-      k8s.ns.name: <nil>
-      k8s.pod.name: <nil>
-      proc.aname[2]: <nil>
-      proc.aname[3]: <nil>
-      proc.aname[4]: <nil>
-      proc.cmdline: gdm-session-wor
-      proc.name: gdm-session-wor
-      proc.pname: gdm-session-wor
-      user.loginuid: "1000"
-      user.name: root
-    result: fail
-    severity: medium
-    source: ""
-    timestamp:
-      nanos: 47556885
-      seconds: 52
-  - message: '14:04:52.047922198: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/shadow parent=gdm-session-wor gparent=<NA> ggparent=<NA> gggparent=<NA>
-      container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA>
-      k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    properties:
-      container.id: host
-      container.image.repository: <nil>
-      evt.time: "1.6252346920479222e+18"
-      fd.name: /etc/shadow
-      k8s.ns.name: <nil>
-      k8s.pod.name: <nil>
-      proc.aname[2]: <nil>
-      proc.aname[3]: <nil>
-      proc.aname[4]: <nil>
-      proc.cmdline: gdm-session-wor
-      proc.name: gdm-session-wor
-      proc.pname: gdm-session-wor
-      user.loginuid: "1000"
-      user.name: root
-    result: fail
-    severity: medium
-    source: ""
-    timestamp:
-      nanos: 47922198
-      seconds: 52
-  - message: '14:04:54.685013887: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/shadow parent=gdm-session-wor gparent=<NA> ggparent=<NA> gggparent=<NA>
-      container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA>
-      k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    properties:
-      container.id: host
-      container.image.repository: <nil>
-      evt.time: "1.6252346946850138e+18"
-      fd.name: /etc/shadow
-      k8s.ns.name: <nil>
-      k8s.pod.name: <nil>
-      proc.aname[2]: <nil>
-      proc.aname[3]: <nil>
-      proc.aname[4]: <nil>
-      proc.cmdline: gdm-session-wor
-      proc.name: gdm-session-wor
-      proc.pname: gdm-session-wor
-      user.loginuid: "1000"
-      user.name: root
-    result: fail
-    severity: medium
-    source: ""
-    timestamp:
-      nanos: 685013887
-      seconds: 54
-  - message: '14:04:54.685113445: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/shadow parent=gdm-session-wor gparent=<NA> ggparent=<NA> gggparent=<NA>
-      container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA>
-      k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    properties:
-      container.id: host
-      container.image.repository: <nil>
-      evt.time: "1.6252346946851133e+18"
-      fd.name: /etc/shadow
-      k8s.ns.name: <nil>
-      k8s.pod.name: <nil>
-      proc.aname[2]: <nil>
-      proc.aname[3]: <nil>
-      proc.aname[4]: <nil>
-      proc.cmdline: gdm-session-wor
-      proc.name: gdm-session-wor
-      proc.pname: gdm-session-wor
-      user.loginuid: "1000"
-      user.name: root
-    result: fail
-    severity: medium
-    source: ""
-    timestamp:
-      nanos: 685113445
-      seconds: 54
-  - message: '14:04:54.700613925: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/shadow parent=gdm-session-wor gparent=<NA> ggparent=<NA> gggparent=<NA>
-      container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA>
-      k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    properties:
-      container.id: host
-      container.image.repository: <nil>
-      evt.time: "1.625234694700614e+18"
-      fd.name: /etc/shadow
-      k8s.ns.name: <nil>
-      k8s.pod.name: <nil>
-      proc.aname[2]: <nil>
-      proc.aname[3]: <nil>
-      proc.aname[4]: <nil>
-      proc.cmdline: gdm-session-wor
-      proc.name: gdm-session-wor
-      proc.pname: gdm-session-wor
-      user.loginuid: "1000"
-      user.name: root
-    result: fail
-    severity: medium
-    source: ""
-    timestamp:
-      nanos: 700613925
-      seconds: 54
+      nanos: 428499322
+      seconds: 47
   summary:
     error: 0
-    fail: 23
-    pass: 0
-    skip: 0
-    warn: 0
-- apiVersion: wgpolicyk8s.io/v1alpha2
-  kind: PolicyReport
-  metadata:
-    creationTimestamp: "2021-07-02T14:19:06Z"
-    generation: 1
-    name: dummy-policy-report5
-    namespace: default
-    resourceVersion: "8482"
-    uid: 76a8ac20-4eae-4344-b722-5ac6d083c0ad
-  results:
-  - message: '12:48:56.996747336: Error File below /etc opened for writing (user=<NA>
-      user_loginuid=-1 command=NetworkManager --no-daemon parent=<NA> pcmdline=<NA>
-      file=/etc/NetworkManager/system-connections/TP-Link_EBF8.nmconnection.MJTB50
-      program=NetworkManager gparent=<NA> ggparent=<NA> gggparent=<NA> container_id=host
-      image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA> k8s.pod=<NA>
-      container=host'
-    policy: Write below etc
-    properties:
-      container.id: host
-      container.image.repository: <nil>
-      evt.time: "1.6252301369967473e+18"
-      fd.name: /etc/NetworkManager/system-connections/TP-Link_EBF8.nmconnection.MJTB50
-      k8s.ns.name: <nil>
-      k8s.pod.name: <nil>
-      proc.aname[2]: <nil>
-      proc.aname[3]: <nil>
-      proc.aname[4]: <nil>
-      proc.cmdline: NetworkManager --no-daemon
-      proc.name: NetworkManager
-      proc.pcmdline: <nil>
-      proc.pname: <nil>
-      user.loginuid: "-1"
-      user.name: <nil>
-    result: fail
-    severity: high
-    source: ""
-    timestamp:
-      nanos: 996747336
-      seconds: 56
-  - message: '12:54:07.080018290: Error File below / or /root opened for writing (user=<NA>
-      user_loginuid=-1 command=bash parent=bash file=res.yaml program=bash container_id=host
-      image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA> k8s.pod=<NA>
-      container=host'
-    policy: Write below root
-    properties:
-      container.id: host
-      container.image.repository: <nil>
-      evt.time: "1.6252304470800182e+18"
-      fd.name: res.yaml
-      k8s.ns.name: <nil>
-      k8s.pod.name: <nil>
-      proc.cmdline: bash
-      proc.name: bash
-      proc.pname: bash
-      user.loginuid: "-1"
-      user.name: <nil>
-    result: fail
-    severity: high
-    source: ""
-    timestamp:
-      nanos: 80018290
-      seconds: 7
-  - message: '13:06:04.450251794: Error File below / or /root opened for writing (user=<NA>
-      user_loginuid=-1 command=bash parent=bash file=res.yaml program=bash container_id=host
-      image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA> k8s.pod=<NA>
-      container=host'
-    policy: Write below root
-    properties:
-      container.id: host
-      container.image.repository: <nil>
-      evt.time: "1.6252311644502518e+18"
-      fd.name: res.yaml
-      k8s.ns.name: <nil>
-      k8s.pod.name: <nil>
-      proc.cmdline: bash
-      proc.name: bash
-      proc.pname: bash
-      user.loginuid: "-1"
-      user.name: <nil>
-    result: fail
-    severity: high
-    source: ""
-    timestamp:
-      nanos: 450251794
-      seconds: 4
-  - message: '13:06:15.829719387: Error File below / or /root opened for writing (user=<NA>
-      user_loginuid=-1 command=bash parent=bash file=res.yaml program=bash container_id=host
-      image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA> k8s.pod=<NA>
-      container=host'
-    policy: Write below root
-    properties:
-      container.id: host
-      container.image.repository: <nil>
-      evt.time: "1.6252311758297193e+18"
-      fd.name: res.yaml
-      k8s.ns.name: <nil>
-      k8s.pod.name: <nil>
-      proc.cmdline: bash
-      proc.name: bash
-      proc.pname: bash
-      user.loginuid: "-1"
-      user.name: <nil>
-    result: fail
-    severity: high
-    source: ""
-    timestamp:
-      nanos: 829719387
-      seconds: 15
-  - message: '13:18:48.658564807: Error File below / or /root opened for writing (user=<NA>
-      user_loginuid=-1 command=bash parent=bash file=res.yaml program=bash container_id=host
-      image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA> k8s.pod=<NA>
-      container=host'
-    policy: Write below root
-    properties:
-      container.id: host
-      container.image.repository: <nil>
-      evt.time: "1.6252319286585649e+18"
-      fd.name: res.yaml
-      k8s.ns.name: <nil>
-      k8s.pod.name: <nil>
-      proc.cmdline: bash
-      proc.name: bash
-      proc.pname: bash
-      user.loginuid: "-1"
-      user.name: <nil>
-    result: fail
-    severity: high
-    source: ""
-    timestamp:
-      nanos: 658564807
-      seconds: 48
-  - message: '13:20:26.696403631: Error File below / or /root opened for writing (user=<NA>
-      user_loginuid=-1 command=bash parent=bash file=res.yaml program=bash container_id=host
-      image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA> k8s.pod=<NA>
-      container=host'
-    policy: Write below root
-    properties:
-      container.id: host
-      container.image.repository: <nil>
-      evt.time: "1.6252320266964037e+18"
-      fd.name: res.yaml
-      k8s.ns.name: <nil>
-      k8s.pod.name: <nil>
-      proc.cmdline: bash
-      proc.name: bash
-      proc.pname: bash
-      user.loginuid: "-1"
-      user.name: <nil>
-    result: fail
-    severity: high
-    source: ""
-    timestamp:
-      nanos: 696403631
-      seconds: 26
-  - message: '14:04:51.748039993: Notice Packet socket was created in a container
-      (user=root user_loginuid=-1 command=kube-apiserver --advertise-address=172.18.0.2
-      --allow-privileged=true --authorization-mode=Node,RBAC --client-ca-file=/etc/kubernetes/pki/ca.crt
-      --enable-admission-plugins=NodeRestriction --enable-bootstrap-token-auth=true
-      --etcd-cafile=/etc/kubernetes/pki/etcd/ca.crt --etcd-certfile=/etc/kubernetes/pki/apiserver-etcd-client.crt
-      --etcd-keyfile=/etc/kubernetes/pki/apiserver-etcd-client.key --etcd-servers=https://127.0.0.1:2379
-      --insecure-port=0 --kubelet-client-certificate=/etc/kubernetes/pki/apiserver-kubelet-client.crt
-      --kubelet-client-key=/etc/kubernetes/pki/apiserver-kubelet-client.key --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
-      --proxy-client-cert-file=/etc/kubernetes/pki/front-proxy-client.crt --proxy-client-key-file=/etc/kubernetes/pki/front-proxy-client.key
-      --requestheader-allowed-names=front-proxy-client --requestheader-client-ca-file=/etc/kubernetes/pki/front-proxy-ca.crt
-      --requestheader-extra-headers-prefix=X-Remote-Extra- --requestheader-group-headers=X-Remote-Group
-      --requestheader-username-headers=X-Remote-User --runtime-config= --secure-port=6443
-      --service-account-issuer=https://kubernetes.default.svc.cluster.local --service-account-key-file=/etc/kubernetes/pki/sa.pub
-      --service-account-signing-key-file=/etc/kubernetes/pki/sa.key --service-cluster-ip-range=10.96.0.0/16
-      --tls-cert-file=/etc/kubernetes/pki/apiserver.crt --tls-private-key-file=/etc/kubernetes/pki/apiserver.key
-      socket_info=domain=17(AF_PACKET) type=2 proto=0  container_id=c64621531ee4 container_name=kube-apiserver
-      image=k8s.gcr.io/kube-apiserver:v1.21.1) k8s.ns=kube-system k8s.pod=kube-apiserver-kind-control-plane
-      container=c64621531ee4 k8s.ns=kube-system k8s.pod=kube-apiserver-kind-control-plane
-      container=c64621531ee4'
-    policy: Packet socket created in container
-    properties:
-      container.id: c64621531ee4
-      container.image.repository: k8s.gcr.io/kube-apiserver
-      container.image.tag: v1.21.1
-      container.name: kube-apiserver
-      evt.args: 'domain=17(AF_PACKET) type=2 proto=0 '
-      evt.time: "1.62523469174804e+18"
-      k8s.ns.name: kube-system
-      k8s.pod.name: kube-apiserver-kind-control-plane
-      proc.cmdline: kube-apiserver --advertise-address=172.18.0.2 --allow-privileged=true
-        --authorization-mode=Node,RBAC --client-ca-file=/etc/kubernetes/pki/ca.crt
-        --enable-admission-plugins=NodeRestriction --enable-bootstrap-token-auth=true
-        --etcd-cafile=/etc/kubernetes/pki/etcd/ca.crt --etcd-certfile=/etc/kubernetes/pki/apiserver-etcd-client.crt
-        --etcd-keyfile=/etc/kubernetes/pki/apiserver-etcd-client.key --etcd-servers=https://127.0.0.1:2379
-        --insecure-port=0 --kubelet-client-certificate=/etc/kubernetes/pki/apiserver-kubelet-client.crt
-        --kubelet-client-key=/etc/kubernetes/pki/apiserver-kubelet-client.key --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
-        --proxy-client-cert-file=/etc/kubernetes/pki/front-proxy-client.crt --proxy-client-key-file=/etc/kubernetes/pki/front-proxy-client.key
-        --requestheader-allowed-names=front-proxy-client --requestheader-client-ca-file=/etc/kubernetes/pki/front-proxy-ca.crt
-        --requestheader-extra-headers-prefix=X-Remote-Extra- --requestheader-group-headers=X-Remote-Group
-        --requestheader-username-headers=X-Remote-User --runtime-config= --secure-port=6443
-        --service-account-issuer=https://kubernetes.default.svc.cluster.local --service-account-key-file=/etc/kubernetes/pki/sa.pub
-        --service-account-signing-key-file=/etc/kubernetes/pki/sa.key --service-cluster-ip-range=10.96.0.0/16
-        --tls-cert-file=/etc/kubernetes/pki/apiserver.crt --tls-private-key-file=/etc/kubernetes/pki/apiserver.key
-      user.loginuid: "-1"
-      user.name: root
-    result: fail
-    severity: medium
-    source: ""
-    timestamp:
-      nanos: 748039993
-      seconds: 51
-  - message: '14:04:51.748360519: Notice Packet socket was created in a container
-      (user=root user_loginuid=-1 command=kube-apiserver --advertise-address=172.18.0.2
-      --allow-privileged=true --authorization-mode=Node,RBAC --client-ca-file=/etc/kubernetes/pki/ca.crt
-      --enable-admission-plugins=NodeRestriction --enable-bootstrap-token-auth=true
-      --etcd-cafile=/etc/kubernetes/pki/etcd/ca.crt --etcd-certfile=/etc/kubernetes/pki/apiserver-etcd-client.crt
-      --etcd-keyfile=/etc/kubernetes/pki/apiserver-etcd-client.key --etcd-servers=https://127.0.0.1:2379
-      --insecure-port=0 --kubelet-client-certificate=/etc/kubernetes/pki/apiserver-kubelet-client.crt
-      --kubelet-client-key=/etc/kubernetes/pki/apiserver-kubelet-client.key --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
-      --proxy-client-cert-file=/etc/kubernetes/pki/front-proxy-client.crt --proxy-client-key-file=/etc/kubernetes/pki/front-proxy-client.key
-      --requestheader-allowed-names=front-proxy-client --requestheader-client-ca-file=/etc/kubernetes/pki/front-proxy-ca.crt
-      --requestheader-extra-headers-prefix=X-Remote-Extra- --requestheader-group-headers=X-Remote-Group
-      --requestheader-username-headers=X-Remote-User --runtime-config= --secure-port=6443
-      --service-account-issuer=https://kubernetes.default.svc.cluster.local --service-account-key-file=/etc/kubernetes/pki/sa.pub
-      --service-account-signing-key-file=/etc/kubernetes/pki/sa.key --service-cluster-ip-range=10.96.0.0/16
-      --tls-cert-file=/etc/kubernetes/pki/apiserver.crt --tls-private-key-file=/etc/kubernetes/pki/apiserver.key
-      socket_info=domain=17(AF_PACKET) type=2 proto=36488  container_id=c64621531ee4
-      container_name=kube-apiserver image=k8s.gcr.io/kube-apiserver:v1.21.1) k8s.ns=kube-system
-      k8s.pod=kube-apiserver-kind-control-plane container=c64621531ee4 k8s.ns=kube-system
-      k8s.pod=kube-apiserver-kind-control-plane container=c64621531ee4'
-    policy: Packet socket created in container
-    properties:
-      container.id: c64621531ee4
-      container.image.repository: k8s.gcr.io/kube-apiserver
-      container.image.tag: v1.21.1
-      container.name: kube-apiserver
-      evt.args: 'domain=17(AF_PACKET) type=2 proto=36488 '
-      evt.time: "1.6252346917483604e+18"
-      k8s.ns.name: kube-system
-      k8s.pod.name: kube-apiserver-kind-control-plane
-      proc.cmdline: kube-apiserver --advertise-address=172.18.0.2 --allow-privileged=true
-        --authorization-mode=Node,RBAC --client-ca-file=/etc/kubernetes/pki/ca.crt
-        --enable-admission-plugins=NodeRestriction --enable-bootstrap-token-auth=true
-        --etcd-cafile=/etc/kubernetes/pki/etcd/ca.crt --etcd-certfile=/etc/kubernetes/pki/apiserver-etcd-client.crt
-        --etcd-keyfile=/etc/kubernetes/pki/apiserver-etcd-client.key --etcd-servers=https://127.0.0.1:2379
-        --insecure-port=0 --kubelet-client-certificate=/etc/kubernetes/pki/apiserver-kubelet-client.crt
-        --kubelet-client-key=/etc/kubernetes/pki/apiserver-kubelet-client.key --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
-        --proxy-client-cert-file=/etc/kubernetes/pki/front-proxy-client.crt --proxy-client-key-file=/etc/kubernetes/pki/front-proxy-client.key
-        --requestheader-allowed-names=front-proxy-client --requestheader-client-ca-file=/etc/kubernetes/pki/front-proxy-ca.crt
-        --requestheader-extra-headers-prefix=X-Remote-Extra- --requestheader-group-headers=X-Remote-Group
-        --requestheader-username-headers=X-Remote-User --runtime-config= --secure-port=6443
-        --service-account-issuer=https://kubernetes.default.svc.cluster.local --service-account-key-file=/etc/kubernetes/pki/sa.pub
-        --service-account-signing-key-file=/etc/kubernetes/pki/sa.key --service-cluster-ip-range=10.96.0.0/16
-        --tls-cert-file=/etc/kubernetes/pki/apiserver.crt --tls-private-key-file=/etc/kubernetes/pki/apiserver.key
-      user.loginuid: "-1"
-      user.name: root
-    result: fail
-    severity: medium
-    source: ""
-    timestamp:
-      nanos: 748360519
-      seconds: 51
-  - message: '14:04:51.769119709: Notice Packet socket was created in a container
-      (user=root user_loginuid=-1 command=kube-apiserver --advertise-address=172.18.0.2
-      --allow-privileged=true --authorization-mode=Node,RBAC --client-ca-file=/etc/kubernetes/pki/ca.crt
-      --enable-admission-plugins=NodeRestriction --enable-bootstrap-token-auth=true
-      --etcd-cafile=/etc/kubernetes/pki/etcd/ca.crt --etcd-certfile=/etc/kubernetes/pki/apiserver-etcd-client.crt
-      --etcd-keyfile=/etc/kubernetes/pki/apiserver-etcd-client.key --etcd-servers=https://127.0.0.1:2379
-      --insecure-port=0 --kubelet-client-certificate=/etc/kubernetes/pki/apiserver-kubelet-client.crt
-      --kubelet-client-key=/etc/kubernetes/pki/apiserver-kubelet-client.key --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
-      --proxy-client-cert-file=/etc/kubernetes/pki/front-proxy-client.crt --proxy-client-key-file=/etc/kubernetes/pki/front-proxy-client.key
-      --requestheader-allowed-names=front-proxy-client --requestheader-client-ca-file=/etc/kubernetes/pki/front-proxy-ca.crt
-      --requestheader-extra-headers-prefix=X-Remote-Extra- --requestheader-group-headers=X-Remote-Group
-      --requestheader-username-headers=X-Remote-User --runtime-config= --secure-port=6443
-      --service-account-issuer=https://kubernetes.default.svc.cluster.local --service-account-key-file=/etc/kubernetes/pki/sa.pub
-      --service-account-signing-key-file=/etc/kubernetes/pki/sa.key --service-cluster-ip-range=10.96.0.0/16
-      --tls-cert-file=/etc/kubernetes/pki/apiserver.crt --tls-private-key-file=/etc/kubernetes/pki/apiserver.key
-      socket_info=domain=17(AF_PACKET) type=2 proto=3465  container_id=c64621531ee4
-      container_name=kube-apiserver image=k8s.gcr.io/kube-apiserver:v1.21.1) k8s.ns=kube-system
-      k8s.pod=kube-apiserver-kind-control-plane container=c64621531ee4 k8s.ns=kube-system
-      k8s.pod=kube-apiserver-kind-control-plane container=c64621531ee4'
-    policy: Packet socket created in container
-    properties:
-      container.id: c64621531ee4
-      container.image.repository: k8s.gcr.io/kube-apiserver
-      container.image.tag: v1.21.1
-      container.name: kube-apiserver
-      evt.args: 'domain=17(AF_PACKET) type=2 proto=3465 '
-      evt.time: "1.6252346917691197e+18"
-      k8s.ns.name: kube-system
-      k8s.pod.name: kube-apiserver-kind-control-plane
-      proc.cmdline: kube-apiserver --advertise-address=172.18.0.2 --allow-privileged=true
-        --authorization-mode=Node,RBAC --client-ca-file=/etc/kubernetes/pki/ca.crt
-        --enable-admission-plugins=NodeRestriction --enable-bootstrap-token-auth=true
-        --etcd-cafile=/etc/kubernetes/pki/etcd/ca.crt --etcd-certfile=/etc/kubernetes/pki/apiserver-etcd-client.crt
-        --etcd-keyfile=/etc/kubernetes/pki/apiserver-etcd-client.key --etcd-servers=https://127.0.0.1:2379
-        --insecure-port=0 --kubelet-client-certificate=/etc/kubernetes/pki/apiserver-kubelet-client.crt
-        --kubelet-client-key=/etc/kubernetes/pki/apiserver-kubelet-client.key --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
-        --proxy-client-cert-file=/etc/kubernetes/pki/front-proxy-client.crt --proxy-client-key-file=/etc/kubernetes/pki/front-proxy-client.key
-        --requestheader-allowed-names=front-proxy-client --requestheader-client-ca-file=/etc/kubernetes/pki/front-proxy-ca.crt
-        --requestheader-extra-headers-prefix=X-Remote-Extra- --requestheader-group-headers=X-Remote-Group
-        --requestheader-username-headers=X-Remote-User --runtime-config= --secure-port=6443
-        --service-account-issuer=https://kubernetes.default.svc.cluster.local --service-account-key-file=/etc/kubernetes/pki/sa.pub
-        --service-account-signing-key-file=/etc/kubernetes/pki/sa.key --service-cluster-ip-range=10.96.0.0/16
-        --tls-cert-file=/etc/kubernetes/pki/apiserver.crt --tls-private-key-file=/etc/kubernetes/pki/apiserver.key
-      user.loginuid: "-1"
-      user.name: root
-    result: fail
-    severity: medium
-    source: ""
-    timestamp:
-      nanos: 769119709
-      seconds: 51
-  - message: '14:04:52.046893888: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/gdm-password parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    properties:
-      container.id: host
-      container.image.repository: <nil>
-      evt.time: "1.6252346920468938e+18"
-      fd.name: /etc/pam.d/gdm-password
-      k8s.ns.name: <nil>
-      k8s.pod.name: <nil>
-      proc.aname[2]: <nil>
-      proc.aname[3]: <nil>
-      proc.aname[4]: <nil>
-      proc.cmdline: gdm-session-wor
-      proc.name: gdm-session-wor
-      proc.pname: gdm-session-wor
-      user.loginuid: "1000"
-      user.name: root
-    result: fail
-    severity: medium
-    source: ""
-    timestamp:
-      nanos: 46893888
-      seconds: 52
-  - message: '14:04:52.046981503: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-auth parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    properties:
-      container.id: host
-      container.image.repository: <nil>
-      evt.time: "1.6252346920469814e+18"
-      fd.name: /etc/pam.d/common-auth
-      k8s.ns.name: <nil>
-      k8s.pod.name: <nil>
-      proc.aname[2]: <nil>
-      proc.aname[3]: <nil>
-      proc.aname[4]: <nil>
-      proc.cmdline: gdm-session-wor
-      proc.name: gdm-session-wor
-      proc.pname: gdm-session-wor
-      user.loginuid: "1000"
-      user.name: root
-    result: fail
-    severity: medium
-    source: ""
-    timestamp:
-      nanos: 46981503
-      seconds: 52
-  - message: '14:04:52.047246017: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-account parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    properties:
-      container.id: host
-      container.image.repository: <nil>
-      evt.time: "1.625234692047246e+18"
-      fd.name: /etc/pam.d/common-account
-      k8s.ns.name: <nil>
-      k8s.pod.name: <nil>
-      proc.aname[2]: <nil>
-      proc.aname[3]: <nil>
-      proc.aname[4]: <nil>
-      proc.cmdline: gdm-session-wor
-      proc.name: gdm-session-wor
-      proc.pname: gdm-session-wor
-      user.loginuid: "1000"
-      user.name: root
-    result: fail
-    severity: medium
-    source: ""
-    timestamp:
-      nanos: 47246017
-      seconds: 52
-  - message: '14:04:52.047387726: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-session parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    properties:
-      container.id: host
-      container.image.repository: <nil>
-      evt.time: "1.6252346920473876e+18"
-      fd.name: /etc/pam.d/common-session
-      k8s.ns.name: <nil>
-      k8s.pod.name: <nil>
-      proc.aname[2]: <nil>
-      proc.aname[3]: <nil>
-      proc.aname[4]: <nil>
-      proc.cmdline: gdm-session-wor
-      proc.name: gdm-session-wor
-      proc.pname: gdm-session-wor
-      user.loginuid: "1000"
-      user.name: root
-    result: fail
-    severity: medium
-    source: ""
-    timestamp:
-      nanos: 47387726
-      seconds: 52
-  - message: '14:04:52.047516201: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-password parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    properties:
-      container.id: host
-      container.image.repository: <nil>
-      evt.time: "1.6252346920475162e+18"
-      fd.name: /etc/pam.d/common-password
-      k8s.ns.name: <nil>
-      k8s.pod.name: <nil>
-      proc.aname[2]: <nil>
-      proc.aname[3]: <nil>
-      proc.aname[4]: <nil>
-      proc.cmdline: gdm-session-wor
-      proc.name: gdm-session-wor
-      proc.pname: gdm-session-wor
-      user.loginuid: "1000"
-      user.name: root
-    result: fail
-    severity: medium
-    source: ""
-    timestamp:
-      nanos: 47516201
-      seconds: 52
-  - message: '14:04:52.047527901: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/other parent=gdm-session-wor gparent=<NA> ggparent=<NA> gggparent=<NA>
-      container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA>
-      k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    properties:
-      container.id: host
-      container.image.repository: <nil>
-      evt.time: "1.625234692047528e+18"
-      fd.name: /etc/pam.d/other
-      k8s.ns.name: <nil>
-      k8s.pod.name: <nil>
-      proc.aname[2]: <nil>
-      proc.aname[3]: <nil>
-      proc.aname[4]: <nil>
-      proc.cmdline: gdm-session-wor
-      proc.name: gdm-session-wor
-      proc.pname: gdm-session-wor
-      user.loginuid: "1000"
-      user.name: root
-    result: fail
-    severity: medium
-    source: ""
-    timestamp:
-      nanos: 47527901
-      seconds: 52
-  - message: '14:04:52.047531493: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-auth parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    properties:
-      container.id: host
-      container.image.repository: <nil>
-      evt.time: "1.6252346920475315e+18"
-      fd.name: /etc/pam.d/common-auth
-      k8s.ns.name: <nil>
-      k8s.pod.name: <nil>
-      proc.aname[2]: <nil>
-      proc.aname[3]: <nil>
-      proc.aname[4]: <nil>
-      proc.cmdline: gdm-session-wor
-      proc.name: gdm-session-wor
-      proc.pname: gdm-session-wor
-      user.loginuid: "1000"
-      user.name: root
-    result: fail
-    severity: medium
-    source: ""
-    timestamp:
-      nanos: 47531493
-      seconds: 52
-  - message: '14:04:52.047540671: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-account parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    properties:
-      container.id: host
-      container.image.repository: <nil>
-      evt.time: "1.6252346920475407e+18"
-      fd.name: /etc/pam.d/common-account
-      k8s.ns.name: <nil>
-      k8s.pod.name: <nil>
-      proc.aname[2]: <nil>
-      proc.aname[3]: <nil>
-      proc.aname[4]: <nil>
-      proc.cmdline: gdm-session-wor
-      proc.name: gdm-session-wor
-      proc.pname: gdm-session-wor
-      user.loginuid: "1000"
-      user.name: root
-    result: fail
-    severity: medium
-    source: ""
-    timestamp:
-      nanos: 47540671
-      seconds: 52
-  - message: '14:04:52.047548983: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-password parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    properties:
-      container.id: host
-      container.image.repository: <nil>
-      evt.time: "1.625234692047549e+18"
-      fd.name: /etc/pam.d/common-password
-      k8s.ns.name: <nil>
-      k8s.pod.name: <nil>
-      proc.aname[2]: <nil>
-      proc.aname[3]: <nil>
-      proc.aname[4]: <nil>
-      proc.cmdline: gdm-session-wor
-      proc.name: gdm-session-wor
-      proc.pname: gdm-session-wor
-      user.loginuid: "1000"
-      user.name: root
-    result: fail
-    severity: medium
-    source: ""
-    timestamp:
-      nanos: 47548983
-      seconds: 52
-  - message: '14:04:52.047556885: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/pam.d/common-session parent=gdm-session-wor gparent=<NA> ggparent=<NA>
-      gggparent=<NA> container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host
-      k8s.ns=<NA> k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    properties:
-      container.id: host
-      container.image.repository: <nil>
-      evt.time: "1.6252346920475569e+18"
-      fd.name: /etc/pam.d/common-session
-      k8s.ns.name: <nil>
-      k8s.pod.name: <nil>
-      proc.aname[2]: <nil>
-      proc.aname[3]: <nil>
-      proc.aname[4]: <nil>
-      proc.cmdline: gdm-session-wor
-      proc.name: gdm-session-wor
-      proc.pname: gdm-session-wor
-      user.loginuid: "1000"
-      user.name: root
-    result: fail
-    severity: medium
-    source: ""
-    timestamp:
-      nanos: 47556885
-      seconds: 52
-  - message: '14:04:52.047922198: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/shadow parent=gdm-session-wor gparent=<NA> ggparent=<NA> gggparent=<NA>
-      container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA>
-      k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    properties:
-      container.id: host
-      container.image.repository: <nil>
-      evt.time: "1.6252346920479222e+18"
-      fd.name: /etc/shadow
-      k8s.ns.name: <nil>
-      k8s.pod.name: <nil>
-      proc.aname[2]: <nil>
-      proc.aname[3]: <nil>
-      proc.aname[4]: <nil>
-      proc.cmdline: gdm-session-wor
-      proc.name: gdm-session-wor
-      proc.pname: gdm-session-wor
-      user.loginuid: "1000"
-      user.name: root
-    result: fail
-    severity: medium
-    source: ""
-    timestamp:
-      nanos: 47922198
-      seconds: 52
-  - message: '14:04:54.685013887: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/shadow parent=gdm-session-wor gparent=<NA> ggparent=<NA> gggparent=<NA>
-      container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA>
-      k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    properties:
-      container.id: host
-      container.image.repository: <nil>
-      evt.time: "1.6252346946850138e+18"
-      fd.name: /etc/shadow
-      k8s.ns.name: <nil>
-      k8s.pod.name: <nil>
-      proc.aname[2]: <nil>
-      proc.aname[3]: <nil>
-      proc.aname[4]: <nil>
-      proc.cmdline: gdm-session-wor
-      proc.name: gdm-session-wor
-      proc.pname: gdm-session-wor
-      user.loginuid: "1000"
-      user.name: root
-    result: fail
-    severity: medium
-    source: ""
-    timestamp:
-      nanos: 685013887
-      seconds: 54
-  - message: '14:04:54.685113445: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/shadow parent=gdm-session-wor gparent=<NA> ggparent=<NA> gggparent=<NA>
-      container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA>
-      k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    properties:
-      container.id: host
-      container.image.repository: <nil>
-      evt.time: "1.6252346946851133e+18"
-      fd.name: /etc/shadow
-      k8s.ns.name: <nil>
-      k8s.pod.name: <nil>
-      proc.aname[2]: <nil>
-      proc.aname[3]: <nil>
-      proc.aname[4]: <nil>
-      proc.cmdline: gdm-session-wor
-      proc.name: gdm-session-wor
-      proc.pname: gdm-session-wor
-      user.loginuid: "1000"
-      user.name: root
-    result: fail
-    severity: medium
-    source: ""
-    timestamp:
-      nanos: 685113445
-      seconds: 54
-  - message: '14:04:54.700613925: Warning Sensitive file opened for reading by non-trusted
-      program (user=root user_loginuid=1000 program=gdm-session-wor command=gdm-session-wor
-      file=/etc/shadow parent=gdm-session-wor gparent=<NA> ggparent=<NA> gggparent=<NA>
-      container_id=host image=<NA>) k8s.ns=<NA> k8s.pod=<NA> container=host k8s.ns=<NA>
-      k8s.pod=<NA> container=host'
-    policy: Read sensitive file untrusted
-    properties:
-      container.id: host
-      container.image.repository: <nil>
-      evt.time: "1.625234694700614e+18"
-      fd.name: /etc/shadow
-      k8s.ns.name: <nil>
-      k8s.pod.name: <nil>
-      proc.aname[2]: <nil>
-      proc.aname[3]: <nil>
-      proc.aname[4]: <nil>
-      proc.cmdline: gdm-session-wor
-      proc.name: gdm-session-wor
-      proc.pname: gdm-session-wor
-      user.loginuid: "1000"
-      user.name: root
-    result: fail
-    severity: medium
-    source: ""
-    timestamp:
-      nanos: 700613925
-      seconds: 54
-  summary:
-    error: 0
-    fail: 23
+    fail: 11
     pass: 0
     skip: 0
     warn: 0
