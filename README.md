@@ -9,13 +9,16 @@ To test this code follow the steps
 ```
  kind create cluster --config=kind-config.yaml
  ```
-2. ```
+2. Add required charts
+ ```
 helm repo add falcosecurity https://falcosecurity.github.io/charts
 ```
-3. ```
+3. Update
+```
 helm repo update 
 ```
-4. ```
+4. Install falco and enable falcosidekick and falcosidekick-ui
+```
  helm install falco falcosecurity/falco --set falcosidekick.enabled=true --set falcosidekick.webui.enabled=true
  ```
 5. Check if all pods are running
@@ -25,7 +28,7 @@ kubectl get all
 6. Port forward falco sidekick to 2801 and falco sidekick to 2802
 ```
  kubectl port-forward svc/falco-falcosidekick 2801
-  kubectl port-forward svc/falco-falcosidekick-ui 2802
+ kubectl port-forward svc/falco-falcosidekick-ui 2802
 ```
 Now clone the repository and create policy reports by creating crd using the command
 ```
@@ -35,8 +38,8 @@ and then run the program
 `go run main.go`
 and to check the created policy report
 ```
- kubectl get policyreports -o yaml > res.yaml
- ```
+kubectl get policyreports -o yaml > res.yaml
+```
 
  
 
